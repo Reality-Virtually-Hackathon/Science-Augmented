@@ -9,9 +9,6 @@ public class NetworkClassroomManager : NetworkBehaviour {
 	static public List<NetworkPlayer> splayers = new List<NetworkPlayer>();
 	static public NetworkClassroomManager sInstance = null;
 
-	public string teacherScene;
-	public string studentScene;
-
 	protected bool _running = true;
 
 	void Awake()

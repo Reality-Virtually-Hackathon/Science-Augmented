@@ -9,6 +9,7 @@ public class NetworkPlayer : NetworkBehaviour {
 
 	void Awake()
 	{
+		DontDestroyOnLoad (this);
 		//register the spaceship in the gamemanager, that will allow to loop on it.
 		NetworkClassroomManager.splayers.Add(this);
 	}
