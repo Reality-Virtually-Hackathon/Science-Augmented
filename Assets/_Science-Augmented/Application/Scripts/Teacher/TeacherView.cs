@@ -94,6 +94,19 @@ public class TeacherView : NetworkBehaviour {
 	public void ChangeState(TeacherViewState state){
 		currentState = state;
 		OnChangeState.Invoke (state);
+
+	    switch (state)
+	    {
+	            case TeacherViewState.Challenge:
+	            print("Null");
+	            break;
+            case TeacherViewState.Introduction:
+                StartInstruction();
+                break;
+            case TeacherViewState.Game:
+	            StartGame();
+	            break;
+	    }
 	}
 
 	public void ChangeActivity(TeacherActivity targetActivity){
