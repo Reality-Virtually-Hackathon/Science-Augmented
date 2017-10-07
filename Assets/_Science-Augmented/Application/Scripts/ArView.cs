@@ -1,15 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ArView : MonoBehaviour {
-
+using UnityEngine.UI;
+public class ArView : MonoBehaviour
+{
+    public CanvasGroup HelpPanelCanvasGroup;
+    [SerializeField]
+    private Text instructionText;
 	// Use this for initialization
 	void Start () {
-		
+		HelpPanelCanvasGroup.gameObject.SetActive(false);
+	    HelpPanelCanvasGroup.alpha = 0;
 	}
-	
-	// Update is called once per frame
+
+    public void SetInstructionText(string value)
+    {
+        instructionText.text = value;
+    }
+
+    // Update is called once per frame
 	void Update () {
 		
 	}
