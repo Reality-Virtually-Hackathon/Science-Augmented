@@ -13,6 +13,7 @@ public class TeacherView : NetworkBehaviour {
 
 	public TeacherActivity currentActivity;
 	public TeacherViewState currentState;
+	public GameObject LearningObjectivePanel;
 	public static TeacherView sInstance;
 	public Text RoomName;
 
@@ -24,21 +25,33 @@ public class TeacherView : NetworkBehaviour {
 	}
 
 	void Start(){
-		RoomName.text = "Room Name";
+		RoomName.text = "New Room" ;
+
+		if (currentActivity != null) {
+			currentActivity.DisableView ();
+		}
+		LearningObjectivePanel.SetActive (true);
+
 	}
 	public void StartInstruction(){
+		LearningObjectivePanel.SetActive (false);
 		currentActivity.StartInstruction ();
+		if(NetworkClassroomManager.sInstance)
 		NetworkClassroomManager.sInstance.ShowIntroduction();
 
 	}
 	//Network
 	public void StartGame(){
+		LearningObjectivePanel.SetActive (false);
 		currentActivity.StartGame ();
+		if(NetworkClassroomManager.sInstance)
 		NetworkClassroomManager.sInstance.ShowGame();
 	}
 
 	//Network
 	public void EndGame(){
+		LearningObjectivePanel.SetActive (false);
+		if(NetworkClassroomManager.sInstance)
 		NetworkClassroomManager.sInstance.StopGame ();
 	}
 
@@ -61,15 +74,18 @@ public class TeacherView : NetworkBehaviour {
 				modelValues [i] = ID [currentIndex];
 			}
 		}
+		if(NetworkClassroomManager.sInstance)
 		NetworkClassroomManager.sInstance.UpdateModels (modelValues);
 
 	}
 
 	public void StartAnimation(){
+		if(NetworkClassroomManager.sInstance)
 		NetworkClassroomManager.sInstance.StartAnimation ();
 	}
 
 	public void StopAnimation(){
+		if(NetworkClassroomManager.sInstance)
 		NetworkClassroomManager.sInstance.StopAnimation ();
 	}
 
@@ -82,7 +98,7 @@ public class TeacherView : NetworkBehaviour {
 
 	public void ChangeActivity(TeacherActivity targetActivity){
 		currentActivity = targetActivity;
-		currentActivity.StartInstruction ();
+		StartInstruction ();
 	}
 		
 

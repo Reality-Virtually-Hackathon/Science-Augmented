@@ -23,6 +23,7 @@ public class TeacherActivityButton : MonoBehaviour {
 
 
 	void UpdateState(){
+
 		TeacherView.sInstance.ChangeActivity (targetState);
 	}
 

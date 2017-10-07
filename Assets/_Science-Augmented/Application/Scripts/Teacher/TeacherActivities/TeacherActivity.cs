@@ -27,4 +27,10 @@ public class TeacherActivity : MonoBehaviour {
 		GamePanel.SetActive (false);
 		ScorePanel.SetActive (true);
 	}
+
+	public virtual void DisableView(){
+		IntruductionPanel.SetActive (false);
+		GamePanel.SetActive (false);
+		ScorePanel.SetActive (false);
+	}
 }
