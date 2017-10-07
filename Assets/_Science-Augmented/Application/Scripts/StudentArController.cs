@@ -4,52 +4,72 @@ using UnityEngine;
 
 public class StudentArController : MonoBehaviour
 {
-    public List<Vuforia.ImageTargetBehaviour> ImageTargetPrefabs;
-    
-    private List<GameObject> objectAnchors = new List<GameObject>();
     [SerializeField]
-    private List<GameObject> ArObjectModels = new List<GameObject>();
- 
-    
+    private List<Vuforia.ImageTargetBehaviour> imageTargetPrefabs = new List<Vuforia.ImageTargetBehaviour>();
+   [SerializeField]
+   private ArModels Models = new ArModels();
+   [SerializeField]
+    ArView arView;
+
+   
+    private List<GameObject> objectAnchors = new List<GameObject>();
+   
+
+
     // Use this for initialization
     void Start () {
         CreateModels();
-    }
-
-    public void SetModels(GameObject[] models)
-    {
-        List<GameObject> modelList = new List<GameObject>();
-        for (int i = 0; i < models.Length; i++)
+        if (arView == null)
         {
-            modelList.Add(models[i]);
+            arView = FindObjectOfType<ArView>();
         }
-        SetModels(modelList);
-
     }
 
-    public void SetModels(List<GameObject> models)
+    public void SetInstructionText(string value)
     {
-        ArObjectModels = models;
+        arView.SetInstructionText(value);
     }
+    
+
 
 
     public void CreateModels()
     {
-        for (int i = 0; i < ArObjectModels.Count; i++)
+        int i = 0;
+        foreach (KeyValuePair<string, EducationModel> keyValuePair in Models.arModelDictionary)
         {
-            int imageTargetNumber = i % (ImageTargetPrefabs.Count - 1);
-            Vuforia.ImageTargetBehaviour imageTarget = Instantiate(ImageTargetPrefabs[imageTargetNumber]);
-            objectAnchors.Add(imageTarget.transform.GetChild(0).gameObject);
-            GameObject arObject = Instantiate(ArObjectModels[i], objectAnchors[i].transform);
-            arObject.transform.localPosition = Vector3.zero;
+            int imageTargetNumber = i % ( imageTargetPrefabs.Count - 1 );
+            Vuforia.ImageTargetBehaviour imageTarget = Instantiate(imageTargetPrefabs[imageTargetNumber]);
             
-            arObject.transform.localScale = Vector3.one/2;
+            OnCollisionEvents collisionEventTrigger = imageTarget.gameObject.GetComponent<OnCollisionEvents>();
+            if (collisionEventTrigger != null)
+            {
+                collisionEventTrigger.OnCollisionEnterEvent.AddListener(CompareEducationModelEnter);
+                collisionEventTrigger.OnCollisionExitEvent.AddListener(CompareEducationModelExit);
+            }
+            objectAnchors.Add(imageTarget.transform.GetChild(0).gameObject);
+            EducationModel  arEducationModel = Instantiate(keyValuePair.Value, objectAnchors[i].transform);
+            arEducationModel.transform.localPosition = Vector3.zero;
+            arEducationModel.transform.localScale = Vector3.one / 2;
+            arEducationModel.SetKey(keyValuePair.Key);
+            i++;
         }
+    
         
     }
 
+    public void CompareEducationModelEnter(EducationModel one, EducationModel two)
+    {
+        
+    }
+
+    public void CompareEducationModelExit(EducationModel one, EducationModel two)
+    {
+
+    }
+
     // Update is called once per frame
-	void Update () {
+    void Update () {
 		
 	}
 }

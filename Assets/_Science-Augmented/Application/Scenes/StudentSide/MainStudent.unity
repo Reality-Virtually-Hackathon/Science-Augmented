@@ -207,13 +207,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f787493b3ad474ea8719862af46e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ImageTargetPrefabs:
+  imageTargetPrefabs:
   - {fileID: 114997860574198584, guid: cb8c11542216f0749b242d9c624f284b, type: 2}
   - {fileID: 114997860574198584, guid: cd055c0415053d74396180e9ab06828a, type: 2}
-  - {fileID: 114997860574198584, guid: 9c1ae28d070dfc14dab92b7582f884bf, type: 2}
-  ArObjectModels:
+  arObjectModels:
   - {fileID: 1899339090900302, guid: 35bd58b86af5a5a4d8ef283197cebbdc, type: 2}
   - {fileID: 1305884444941642, guid: 0b2b3e995bea87c4087547b3e3a127c5, type: 2}
+  arView: {fileID: 171274344}
 --- !u!4 &136844195
 Transform:
   m_ObjectHideFlags: 0
@@ -310,8 +310,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 171274339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 180.5, y: 270.5, z: 0}
-  m_LocalScale: {x: 0.45125, y: 0.45125, z: 0.45125}
+  m_LocalPosition: {x: 300, y: 512, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 761659582}
   - {fileID: 1861636049}
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HelpPanelCanvasGroup: {fileID: 761659579}
-  instructionText: {fileID: 0}
+  instructionText: {fileID: 389178559}
 --- !u!1 &265834700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,7 +1119,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 761659576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -599.446, z: 0}
+  m_LocalPosition: {x: 0, y: -682.6667, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 512353574}
@@ -1770,7 +1770,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1861636048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -599.446, z: 0}
+  m_LocalPosition: {x: 0, y: -682.6667, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 389178558}
