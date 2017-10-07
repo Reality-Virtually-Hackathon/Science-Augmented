@@ -6,15 +6,15 @@ using UnityEngine.Events;
 
 
 [RequireComponent(typeof(Button))]
-public abstract class TeacherStateButton : MonoBehaviour {
+public class TeacherActivityButton : MonoBehaviour {
 
 	[SerializeField]
-	private TeacherViewState targetActivity;
+	private TeacherActivity targetState;
 	private Button thisButton;
 
 	// Use this for initialization
 	void Start () {
-		
+
 		thisButton = GetComponent<Button> ();
 		thisButton.onClick.AddListener (UpdateState);
 		//TeacherView.sInstance.OnChangeState.AddListener (UpdateButtonGraphic);
@@ -23,7 +23,7 @@ public abstract class TeacherStateButton : MonoBehaviour {
 
 
 	void UpdateState(){
-		TeacherView.sInstance.ChangeState (targetActivity);
+		TeacherView.sInstance.ChangeActivity (targetState);
 	}
 
 
