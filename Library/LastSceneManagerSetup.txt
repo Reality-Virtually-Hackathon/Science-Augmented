@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Science-Augmented/Application/Scenes/StudentSide/MainStudent.unity
+- path: Assets/_Science-Augmented/Application/Scenes/Main.unity
   isLoaded: 1
   isActive: 1
