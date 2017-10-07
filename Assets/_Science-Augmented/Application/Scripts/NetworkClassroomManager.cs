@@ -10,7 +10,7 @@ public class NetworkClassroomManager : NetworkBehaviour {
 	static public NetworkClassroomManager sInstance = null;
 
 	public string teacherScene;
-	public string studentString;
+	public string studentScene;
 
 	protected bool _running = true;
 
