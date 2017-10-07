@@ -7394,7 +7394,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1769701218}
-  - component: {fileID: 1769701219}
   m_Layer: 5
   m_Name: MainPanel
   m_TagString: Untagged
@@ -7426,23 +7425,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000030517578, y: -135.18518}
   m_SizeDelta: {x: 466.50684, y: 880}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &1769701219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11438560, guid: c0978251ff7b10d4fb954a4b56acd9f0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1769701217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0312403f252434c912587ebde8fb96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lobbyManager: {fileID: 0}
-  lobbyServerList: {fileID: 0}
-  lobbyPanel: {fileID: 0}
-  ipInput: {fileID: 0}
-  matchNameInput: {fileID: 0}
 --- !u!1 &1812514781
 GameObject:
   m_ObjectHideFlags: 0
