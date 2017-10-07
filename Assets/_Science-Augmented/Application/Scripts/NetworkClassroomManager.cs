@@ -61,68 +61,68 @@ public class NetworkClassroomManager : NetworkBehaviour {
 	}
 
 	public void UpdateModels(int[] models){
-		RPCUpdateModels (models);
+		RpcUpdateModels (models);
 	}
 
 	public void ShowIntroduction(){
-		RPCShowIntroduction ();
+		RpcShowIntroduction ();
 	}
 
 	public void ShowGame(){
-		RPCShowGame ();
+		RpcShowGame ();
 	}
 
 	public void StopGame(){
-		RPCShowGame ();
+		RpcShowGame ();
 	}
 
 	public void Complete(){
-		RPCShowGame ();
+		RpcShowGame ();
 	}
 
 	public void StartAnimation(){
-		RPCStartAnimation ();
+		RpcStartAnimation ();
 	}
 
 	public void StopAnimation(){
-		RPCStopAnimation ();
+		RpcStopAnimation ();
 	}
 
-	[ClientRpc]
-	public void RPCStopAnimation(){
+	//[ClientRpc]
+	public void RpcStopAnimation(){
 		Debug.Log ("Stop Animation");
 		OnStopAnimation.Invoke ();
 	}
 
 	[ClientRpc]
-	public void RPCStartAnimation(){
+	public void RpcStartAnimation(){
 		Debug.Log ("Show Animation");
 		OnStartAnimation.Invoke ();
 	}
 
 	[ClientRpc]
-	public void RPCStopGame(){
+	public void RpcStopGame(){
 		Debug.Log ("Show End");
 		OnStopGame.Invoke ();
 	}
 	[ClientRpc]
-	public void RPCStudentComplete(){
+	public void RpcStudentComplete(){
 		Debug.Log ("Add Complete");
 		OnStudentComplete.Invoke ();
 	}
 	[ClientRpc]
-	public void RPCShowIntroduction(){
+	public void RpcShowIntroduction(){
 		Debug.Log ("Show Intro");
 		OnShowIntoduction.Invoke ();
 	}
 	[ClientRpc]
-	public void RPCShowGame(){
+	public void RpcShowGame(){
 		Debug.Log ("Show Game");
 		OnShowGame.Invoke ();
 	}
 
 	[ClientRpc]
-	public void RPCUpdateModels(int[] models){
+	public void RpcUpdateModels(int[] models){
 		Debug.Log (models.Length);
 		OnPlayerModelsChange.Invoke (models);
 

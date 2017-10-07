@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 44404785}
   - component: {fileID: 44404784}
   - component: {fileID: 44404783}
+  - component: {fileID: 44404786}
   m_Layer: 5
   m_Name: Lesson 1
   m_TagString: Untagged
@@ -389,7 +390,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 44404781}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -719.7534, y: -506.0946, z: 0}
+  m_LocalPosition: {x: -335, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1471407007}
@@ -475,6 +476,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 44404781}
+--- !u!114 &44404786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 44404781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b81fe15bca345199eaa1544c9c1e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetState: {fileID: 743125612}
 --- !u!1 &46450040
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &50274217
 RectTransform:
   m_ObjectHideFlags: 0
@@ -980,7 +993,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 197018720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.5, y: 0, z: 0}
+  m_LocalPosition: {x: -719.7534, y: -506.0946, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 895963175}
@@ -1454,7 +1467,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 324368145}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.5, y: 0, z: 0}
+  m_LocalPosition: {x: -478.50006, y: 0.000061035156, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 895963175}
@@ -1652,7 +1665,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 446483578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -478.50006, y: 0.000061035156, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 426098176}
@@ -2459,7 +2472,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 565770335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: 0, z: 0}
+  m_LocalPosition: {x: -719.7534, y: -506.0946, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1556671485}
@@ -4916,7 +4929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1247798466
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5532,7 +5545,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1397801599}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -178.5, y: 0.000061035156, z: 0}
+  m_LocalPosition: {x: 335, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1632995066}
@@ -7139,9 +7152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678e8164ecf3a4f88a27da76798e2e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentActivity: {fileID: 0}
+  currentActivity: {fileID: 743125612}
   currentState: 0
-  RoomName: {fileID: 0}
+  RoomName: {fileID: 1974865795}
 --- !u!1 &1632995065
 GameObject:
   m_ObjectHideFlags: 0
@@ -8169,7 +8182,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1840314044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalPosition: {x: -478.50006, y: 0.000061035156, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1845333636}
@@ -8816,7 +8829,7 @@ GameObject:
   - component: {fileID: 1974865796}
   - component: {fileID: 1974865795}
   m_Layer: 5
-  m_Name: NetworkLobbyExample
+  m_Name: Room Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

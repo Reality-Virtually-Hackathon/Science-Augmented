@@ -48,11 +48,11 @@ public class TeacherView : NetworkBehaviour {
 
 
 	public void ChangeModel(int[] ID){
-		int numberOfPlayers = Network.connections.Length;
-		int[] modelValues = new int[numberOfPlayers];
+		int players = Network.connections.Length;
+		int[] modelValues = new int[players];
 		int currentIndex= 0;
 
-		for (int i = 0; i < numberOfPlayers; i++) {
+		for (int i = 0; i < players; i++) {
 			if (currentIndex < ID.Length) {
 				modelValues [i] = ID [currentIndex];
 				currentIndex ++;
@@ -82,6 +82,7 @@ public class TeacherView : NetworkBehaviour {
 
 	public void ChangeActivity(TeacherActivity targetActivity){
 		currentActivity = targetActivity;
+		currentActivity.StartInstruction ();
 	}
 		
 

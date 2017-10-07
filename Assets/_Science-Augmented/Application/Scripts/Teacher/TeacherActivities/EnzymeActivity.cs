@@ -4,6 +4,9 @@ using UnityEngine;
 
 
 public class EnzymeActivity : TeacherActivity {
-
+	public override void StartInstruction ()
+	{
+		base.StartInstruction ();
+	}
 
 }
