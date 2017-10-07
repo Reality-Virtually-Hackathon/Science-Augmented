@@ -19,18 +19,20 @@ public class TeacherStudentEvents : MonoBehaviour {
 #if PLATFORM_ANDROID || UNITY_ANDROID || UNITY_IOS
         isTeacher = false;
 		isStudent = true;
+        OnStudent.Invoke(isStudent);
 #else
     isTeacher = true;
     isStudent = false;
+   OnTeacher.Invoke (isTeacher);
 #endif
         //
 
-        OnStudent.Invoke (isStudent);
-		OnTeacher.Invoke (isTeacher);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }

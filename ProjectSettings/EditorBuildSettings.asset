@@ -14,3 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Science-Augmented/Application/Scenes/Main.unity
     guid: 1cf1986d6cffea045b33d624555ab7d2
+  - enabled: 1
+    path: Assets/_Science-Augmented/Application/Scenes/MainNetwork.unity
+    guid: 950b9805b4d854eaabee79bafa78e409
+  - enabled: 1
+    path: Assets/_Science-Augmented/Application/Scenes/StudentSide/MainStudent.unity
+    guid: 571e72bc184d2e1428217539a15368f9
+  - enabled: 1
+    path: Assets/_Science-Augmented/Application/Scenes/TeacherSide/MainTeacher.unity
+    guid: ac3b7ce2fd08b2f4f84c523c1250140f
