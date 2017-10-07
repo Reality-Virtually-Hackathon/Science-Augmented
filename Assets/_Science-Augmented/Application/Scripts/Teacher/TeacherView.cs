@@ -59,6 +59,18 @@ public class TeacherView : NetworkBehaviour {
 
 	}
 
+	public void ChangeIntroductionModel(int ID){
+		int players = Network.connections.Length;
+		int[] modelValues = new int[players];
+		int currentIndex= 0;
+
+		for (int i = 0; i < players; i++) {
+			modelValues [i] = ID;
+		}
+
+		if(NetworkClassroomManager.sInstance)
+			NetworkClassroomManager.sInstance.UpdateModels (modelValues);
+	}
 
 	public void ChangeModel(int[] ID){
 		int players = Network.connections.Length;
