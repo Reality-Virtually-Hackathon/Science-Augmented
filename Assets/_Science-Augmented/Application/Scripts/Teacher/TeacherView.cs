@@ -29,11 +29,12 @@ public class TeacherView : NetworkBehaviour {
 	public void StartInstruction(){
 
 	}
-
+	//Network
 	public void StartGame(){
 
 	}
 
+	//Network
 	public void EndGame(){
 
 	}
@@ -41,6 +42,28 @@ public class TeacherView : NetworkBehaviour {
 	public void Restart(){
 
 	}
+
+	//Network
+	public void ChangeModelForAll(int ID){
+
+	}
+	//Network
+	public void StartAnimation(){
+
+	}
+	//Network
+	public void StopAnimation(){
+
+	}
+
+
+
+	//Network
+	public void StartGameModels(int enzymeID, int substrateID){
+
+	}
+
+
 
 	public void ChangeState(TeacherViewState state){
 		currentState = state;

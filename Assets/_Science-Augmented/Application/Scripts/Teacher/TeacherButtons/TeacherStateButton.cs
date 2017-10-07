@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 
 [RequireComponent(typeof(Button))]
-public abstract class TeacherStateButton : MonoBehaviour {
+public class TeacherStateButton : MonoBehaviour {
 
 	[SerializeField]
 	private TeacherViewState targetActivity;
