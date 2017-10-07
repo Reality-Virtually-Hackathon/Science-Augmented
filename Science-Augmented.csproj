@@ -241,6 +241,7 @@
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\NetworkPlayer.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\SceneController.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\StudentArController.cs" />
+    <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherActivities\EnzymeActivity.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherActivities\TeacherActivity.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherButtons\TeacherActivityButton.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherButtons\TeacherStateButton.cs" />

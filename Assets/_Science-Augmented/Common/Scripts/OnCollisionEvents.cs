@@ -22,11 +22,11 @@ public class OnCollisionEvents : MonoBehaviour
         
      
     }
-
+    
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
     private void OnCollisionEnter(Collision collision)
     {
-        print("Hit");
+      
         if(thisEducationModel == null)
         {
             thisEducationModel = GetComponentInChildren<EducationModel>();
@@ -41,15 +41,17 @@ public class OnCollisionEvents : MonoBehaviour
                 collisionObjects.Add(collisonModel);
             }
             string combinedValue = thisEducationModel.Value;
-            print(combinedValue);
+       
             EducationModel enzyme = collisionObjects.Find(e => e.Enzyme);
             if(enzyme == false)
             {
                 return;
             }
+            
 
             combinedValue = Enumerable.Aggregate(collisionObjects, combinedValue, (current, t) => current + t.Value);
             thisEducationModel.CombinedValue = combinedValue;
+            
             for (int i = 0; i < collisionObjects.Count; i++)
             {
                 collisionObjects[i].CombinedValue = combinedValue;
