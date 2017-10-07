@@ -16,12 +16,16 @@ public class TeacherStudentEvents : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//Adrian
-		isTeacher = false;
-		isStudent = false;
-		//
+#if PLATFORM_ANDROID || UNITY_ANDROID || UNITY_IOS
+        isTeacher = false;
+		isStudent = true;
+#else
+    isTeacher = true;
+    isStudent = false;
+#endif
+        //
 
-		OnStudent.Invoke (isStudent);
+        OnStudent.Invoke (isStudent);
 		OnTeacher.Invoke (isTeacher);
 	}
 	
