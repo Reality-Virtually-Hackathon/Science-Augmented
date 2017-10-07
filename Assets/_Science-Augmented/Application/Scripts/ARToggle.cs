@@ -14,6 +14,7 @@ public class ARToggle : MonoBehaviour {
 
 	public void EnableVuforia(bool enabled){
 		#if !UNITY_WEBGL
+	    if(VuforiaBehaviour.Instance)
 		VuforiaBehaviour.Instance.enabled = enabled;
 		#endif
 
