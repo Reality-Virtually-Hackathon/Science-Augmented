@@ -232,6 +232,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\ArView.cs" />
+    <Compile Include="Assets\_Science-Augmented\Application\Scripts\NetworkClassroomManager.cs" />
+    <Compile Include="Assets\_Science-Augmented\Application\Scripts\NetworkPlayer.cs" />
+    <Compile Include="Assets\_Science-Augmented\Application\Scripts\SceneController.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\StudentArController.cs" />
     <Compile Include="Assets\_Science-Augmented\Common\Scripts\OnCollisionEvents.cs" />
     <Compile Include="Assets\Lobby\Scripts\DraggablePanel.cs" />
