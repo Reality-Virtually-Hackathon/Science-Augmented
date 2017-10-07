@@ -5,12 +5,12 @@ using UnityEngine;
 public class EducationModel : MonoBehaviour
 {
 
-    public string Key;
+    public int Key;
     public string CombinedValue;
     public string Value;
     public bool Enzyme = false;
     public GameObject Model;
-    public void SetKey(string value)
+    public void SetKey(int value)
     {
         Model = gameObject;
         Key = value;
@@ -31,7 +31,7 @@ public class EducationModel : MonoBehaviour
         Model = value;
     }
 
-    public void Set(string value, GameObject model)
+    public void Set(int value, GameObject model)
     {
         Key = value;
         Model = model;

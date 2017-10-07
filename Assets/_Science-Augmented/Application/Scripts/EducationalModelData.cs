@@ -6,10 +6,10 @@ public class EducationalModelData : MonoBehaviour {
 
     public List<EducationModel> EducationModels = new List<EducationModel>();
 
-    public EducationModel GetEducationModelById(string id)
+    public EducationModel GetEducationModelById(int id)
     {
         EducationModel model = null;
-        model = EducationModels.Find(e => string.CompareOrdinal(e.Key, id) == 0);
+        model = EducationModels.Find(e => e.Key == id);
         return model;
 
     }
