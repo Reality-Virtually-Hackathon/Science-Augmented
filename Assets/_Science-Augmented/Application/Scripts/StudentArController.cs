@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class StudentArController : MonoBehaviour
 {
     [SerializeField]
     private List<Vuforia.ImageTargetBehaviour> imageTargetPrefabs = new List<Vuforia.ImageTargetBehaviour>();
-   [SerializeField]
-   private ArModels Models = new ArModels();
-   [SerializeField]
+
+    public EducationalModelData DataPrefab;
+    private EducationalModelData data;
+    [SerializeField]
     ArView arView;
 
    
@@ -17,7 +20,9 @@ public class StudentArController : MonoBehaviour
 
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        data = Instantiate(DataPrefab);
         CreateModels();
         if (arView == null)
         {
@@ -29,33 +34,67 @@ public class StudentArController : MonoBehaviour
     {
         arView.SetInstructionText(value);
     }
-    
+
 
 
 
     public void CreateModels()
     {
-        int i = 0;
-        foreach (KeyValuePair<string, EducationModel> keyValuePair in Models.arModelDictionary)
+        for (int i = 0; i < objectAnchors.Count; i++)
         {
-            int imageTargetNumber = i % ( imageTargetPrefabs.Count - 1 );
+            Destroy(objectAnchors[i].transform.parent.gameObject);
+        }
+        objectAnchors = new List<GameObject>();
+        
+        for (int i = 0; i < data.EducationModels.Count; i++)
+        {
+            int imageTargetNumber = i % (imageTargetPrefabs.Count);
             Vuforia.ImageTargetBehaviour imageTarget = Instantiate(imageTargetPrefabs[imageTargetNumber]);
-            
-            OnCollisionEvents collisionEventTrigger = imageTarget.gameObject.GetComponent<OnCollisionEvents>();
+
+            OnCollisionEvents collisionEventTrigger = imageTarget.gameObject.GetComponentInChildren<OnCollisionEvents>();
+
+            objectAnchors.Add(imageTarget.transform.GetChild(0).gameObject);
+            EducationModel arEducationModel = Instantiate(data.EducationModels[i], objectAnchors[i].transform);
+            arEducationModel.transform.localPosition = Vector3.zero;
+            arEducationModel.transform.localScale = Vector3.one / 2;
+
             if (collisionEventTrigger != null)
             {
                 collisionEventTrigger.OnCollisionEnterEvent.AddListener(CompareEducationModelEnter);
                 collisionEventTrigger.OnCollisionExitEvent.AddListener(CompareEducationModelExit);
             }
+
+        }
+    }
+
+
+    public void CreateModels(List<EducationModel> models )
+    {
+        for (int i = 0; i < objectAnchors.Count; i++)
+        {
+            Destroy(objectAnchors[i].transform.parent.gameObject);
+        }
+        objectAnchors = new List<GameObject>();
+        
+        for (int i = 0; i < models.Count; i++)
+        {
+            int imageTargetNumber = i % ( imageTargetPrefabs.Count - 1 );
+            Vuforia.ImageTargetBehaviour imageTarget = Instantiate(imageTargetPrefabs[imageTargetNumber]);
+
+            OnCollisionEvents collisionEventTrigger = imageTarget.gameObject.GetComponent<OnCollisionEvents>();
+
             objectAnchors.Add(imageTarget.transform.GetChild(0).gameObject);
-            EducationModel  arEducationModel = Instantiate(keyValuePair.Value, objectAnchors[i].transform);
+            EducationModel arEducationModel = Instantiate(models[i], objectAnchors[i].transform);
             arEducationModel.transform.localPosition = Vector3.zero;
             arEducationModel.transform.localScale = Vector3.one / 2;
-            arEducationModel.SetKey(keyValuePair.Key);
-            i++;
+
+            if (collisionEventTrigger != null)
+            {
+                collisionEventTrigger.OnCollisionEnterEvent.AddListener(CompareEducationModelEnter);
+                collisionEventTrigger.OnCollisionExitEvent.AddListener(CompareEducationModelExit);
+            }
+
         }
-    
-        
     }
 
     public void CompareEducationModelEnter(EducationModel one, EducationModel two)

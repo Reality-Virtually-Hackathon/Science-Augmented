@@ -210,9 +210,8 @@ MonoBehaviour:
   imageTargetPrefabs:
   - {fileID: 114997860574198584, guid: cb8c11542216f0749b242d9c624f284b, type: 2}
   - {fileID: 114997860574198584, guid: cd055c0415053d74396180e9ab06828a, type: 2}
-  arObjectModels:
-  - {fileID: 1899339090900302, guid: 35bd58b86af5a5a4d8ef283197cebbdc, type: 2}
-  - {fileID: 1305884444941642, guid: 0b2b3e995bea87c4087547b3e3a127c5, type: 2}
+  DataPrefab: {fileID: 114235450493287178, guid: 8c6e8674f3458354984e7872a686cdbf,
+    type: 2}
   arView: {fileID: 171274344}
 --- !u!4 &136844195
 Transform:
