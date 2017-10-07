@@ -33,7 +33,7 @@ public class NetworkGameManager : NetworkBehaviour
         {
             StartCoroutine(AsteroidCoroutine());
         }
-
+	
         for(int i = 0; i < sShips.Count; ++i)
         {
             sShips[i].Init();

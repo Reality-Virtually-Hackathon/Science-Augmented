@@ -27,40 +27,50 @@ public class TeacherView : NetworkBehaviour {
 		RoomName.text = "Room Name";
 	}
 	public void StartInstruction(){
+		currentActivity.StartInstruction ();
+		NetworkClassroomManager.sInstance.ShowIntroduction();
 
 	}
 	//Network
 	public void StartGame(){
-
+		currentActivity.StartGame ();
+		NetworkClassroomManager.sInstance.ShowGame();
 	}
 
 	//Network
 	public void EndGame(){
-
+		NetworkClassroomManager.sInstance.StopGame ();
 	}
 
 	public void Restart(){
 
 	}
 
-	//Network
-	public void ChangeModelForAll(int ID){
+
+	public void ChangeModel(int[] ID){
+		int numberOfPlayers = Network.connections.Length;
+		int[] modelValues = new int[numberOfPlayers];
+		int currentIndex= 0;
+
+		for (int i = 0; i < numberOfPlayers; i++) {
+			if (currentIndex < ID.Length) {
+				modelValues [i] = ID [currentIndex];
+				currentIndex ++;
+			} else {
+				currentIndex = 0;
+				modelValues [i] = ID [currentIndex];
+			}
+		}
+		NetworkClassroomManager.sInstance.UpdateModels (modelValues);
 
 	}
-	//Network
+
 	public void StartAnimation(){
-
+		NetworkClassroomManager.sInstance.StartAnimation ();
 	}
-	//Network
+
 	public void StopAnimation(){
-
-	}
-
-
-
-	//Network
-	public void StartGameModels(int enzymeID, int substrateID){
-
+		NetworkClassroomManager.sInstance.StopAnimation ();
 	}
 
 

@@ -7,13 +7,15 @@ Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
 using UnityEngine;
+#if !UNITY_WEBGL
 using Vuforia;
-
+#endif
 /// <summary>
 ///     A custom handler that registers for Vuforia initialization errors
 /// </summary>
 public class DefaultInitializationErrorHandler : MonoBehaviour
 {
+	#if !UNITY_WEBGL
     #region Vuforia_lifecycle_events
 
     public void OnVuforiaInitializationError(VuforiaUnity.InitError initError)
@@ -236,4 +238,5 @@ public class DefaultInitializationErrorHandler : MonoBehaviour
     }
 
     #endregion // PRIVATE_METHODS
+	#endif
 }

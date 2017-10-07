@@ -7,13 +7,21 @@ Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
 using UnityEngine;
+#if !UNITY_WEBGL
 using Vuforia;
+#endif
 
 /// <summary>
 ///     A custom handler that implements the ITrackableEventHandler interface.
 /// </summary>
-public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
+public class DefaultTrackableEventHandler : MonoBehaviour
+#if!UNITY_WEBGL
+,	
+
+	 ITrackableEventHandler
+	#endif
 {
+	#if !UNITY_WEBGL
     #region PRIVATE_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
@@ -107,4 +115,5 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     }
 
     #endregion // PRIVATE_METHODS
+	#endif
 }

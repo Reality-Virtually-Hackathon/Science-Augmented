@@ -9,8 +9,10 @@ countries.
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+#if!UNITY_WEBGL
 using Vuforia;
 using Vuforia.EditorClasses;
+#endif
 
 /// <summary>
 /// Creates connection between open source files and the Vuforia library.
@@ -19,6 +21,7 @@ using Vuforia.EditorClasses;
 [InitializeOnLoad]
 public static class OpenSourceInitializer
 {
+	#if!UNITY_WEBGL
     static OpenSourceInitializer()
     {
         GameObjectFactory.SetDefaultBehaviourTypeConfiguration(new DefaultBehaviourAttacher());
@@ -82,4 +85,5 @@ public static class OpenSourceInitializer
             go.AddComponent<DefaultInitializationErrorHandler>();
         }
     }
+	#endif
 }

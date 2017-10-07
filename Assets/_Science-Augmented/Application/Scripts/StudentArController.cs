@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class StudentArController : MonoBehaviour
 {
+	#if !UNITY_WEBGL
     [SerializeField]
     private List<Vuforia.ImageTargetBehaviour> imageTargetPrefabs = new List<Vuforia.ImageTargetBehaviour>();
 
@@ -111,4 +112,5 @@ public class StudentArController : MonoBehaviour
     void Update () {
 		
 	}
+	#endif
 }

@@ -8,7 +8,9 @@ Confidential and Proprietary - Protected under copyright and other laws.
 
 
 using UnityEngine;
+#if !UNITY_WEBGL
 using Vuforia;
+#endif
 
 /// <summary>
 ///     A default event handler that handles reconstruction events for a ReconstructionFromTarget
@@ -17,6 +19,7 @@ using Vuforia;
 /// </summary>
 public class DefaultSmartTerrainEventHandler : MonoBehaviour
 {
+	#if !UNITY_WEBGL
     #region PRIVATE_MEMBERS
 
     ReconstructionBehaviour mReconstructionBehaviour;
@@ -74,4 +77,5 @@ public class DefaultSmartTerrainEventHandler : MonoBehaviour
     }
 
     #endregion // RECONSTRUCTION_CALLBACKS
+	#endif
 }
