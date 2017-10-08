@@ -158,6 +158,83 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c6e8674f3458354984e7872a686cdbf, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &293631196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 293631199}
+  - component: {fileID: 293631198}
+  - component: {fileID: 293631197}
+  m_Layer: 0
+  m_Name: TeacherView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &293631197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 293631196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678e8164ecf3a4f88a27da76798e2e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentActivity: {fileID: 743125612}
+  currentState: 0
+  LearningObjectivePanel: {fileID: 551546541}
+  StudentCount: {fileID: 1216706826}
+--- !u!114 &293631198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 293631196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
+--- !u!4 &293631199
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 293631196}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1749.5961, y: 1486.2523, z: -19.63405}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &528511982
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +291,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &551546541 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1490084750597702, guid: f1ea2affd6d8d4e33a9b6632659e18d3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1851859694}
 --- !u!1 &600818662
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +481,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1216706826 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114996690010983752, guid: f1ea2affd6d8d4e33a9b6632659e18d3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1851859694}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
 --- !u!1 &1490085468 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1243256820891724, guid: f1ea2affd6d8d4e33a9b6632659e18d3,
@@ -924,8 +1012,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1936297601723788, guid: f1ea2affd6d8d4e33a9b6632659e18d3, type: 2}
+      propertyPath: m_Name
+      value: StudentCount
+      objectReference: {fileID: 0}
+    - target: {fileID: 114732266728963404, guid: f1ea2affd6d8d4e33a9b6632659e18d3,
+        type: 2}
+      propertyPath: targetState
+      value: 
+      objectReference: {fileID: 743125612}
     m_RemovedComponents:
     - {fileID: 114534976014036866, guid: f1ea2affd6d8d4e33a9b6632659e18d3, type: 2}
+    - {fileID: 114528376313188048, guid: f1ea2affd6d8d4e33a9b6632659e18d3, type: 2}
+    - {fileID: 114816349431915896, guid: f1ea2affd6d8d4e33a9b6632659e18d3, type: 2}
+    - {fileID: 114006757009598112, guid: f1ea2affd6d8d4e33a9b6632659e18d3, type: 2}
+    - {fileID: 114117769738173590, guid: f1ea2affd6d8d4e33a9b6632659e18d3, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f1ea2affd6d8d4e33a9b6632659e18d3, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1859437002 stripped

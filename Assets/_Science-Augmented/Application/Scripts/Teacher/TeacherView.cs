@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 public enum TeacherViewState{Introduction,Game,Challenge}
 
@@ -15,7 +16,7 @@ public class TeacherView : NetworkBehaviour {
 	public TeacherViewState currentState;
 	public GameObject LearningObjectivePanel;
 	public static TeacherView sInstance;
-
+	public TextMeshProUGUI StudentCount;
 
 	[HideInInspector]
 	public TeacherStateEvent OnChangeState = new TeacherStateEvent ();
@@ -25,12 +26,12 @@ public class TeacherView : NetworkBehaviour {
 	}
 
 	void Start(){
-		
-
+		StudentCount.text = "(" + Network.connections.Length + ")";
+		LearningObjectivePanel.SetActive (true);
 		if (currentActivity != null) {
 			currentActivity.DisableView ();
 		}
-		LearningObjectivePanel.SetActive (true);
+
 
 	}
 	public void StartInstruction(){
@@ -124,6 +125,7 @@ public class TeacherView : NetworkBehaviour {
 	}
 
 	public void ChangeActivity(TeacherActivity targetActivity){
+		print (targetActivity);
 		currentActivity = targetActivity;
 		StartInstruction ();
 	}
