@@ -17,12 +17,50 @@ public class OnCollisionEvents : MonoBehaviour
     public CollisionEvent OnCollisionStayEvent = new CollisionEvent();
     private  EducationModel thisEducationModel;
     private List<EducationModel> collisionObjects = new List<EducationModel>();
+    Vuforia.ImageTargetBehaviour tracker;
     void Awake()
     {
-        
-     
+
+         tracker = gameObject.transform.parent.GetComponent<Vuforia.ImageTargetBehaviour>();
+        TurnOff();
     }
-    
+
+    void Update()
+    {
+
+        if (turnedOff && tracker.CurrentStatus == Vuforia.TrackableBehaviour.Status.DETECTED || tracker.CurrentStatus == Vuforia.TrackableBehaviour.Status.TRACKED)
+        {
+            Collider[] colider = GetComponentsInChildren<Collider>();
+            for (int i = 0; i < colider.Length; i++)
+            {
+                
+                colider[i].enabled = true;
+            }
+            turnedOff = false;
+        }
+        else
+        {
+            TurnOff();
+        }
+        
+    }
+
+    bool turnedOff;
+    void TurnOff()
+    {
+        if(turnedOff)
+            return;
+       
+            Collider[] colider = GetComponentsInChildren<Collider>();
+            for (int i = 0; i < colider.Length; i++)
+            {
+
+                colider[i].enabled = false;
+            }
+        
+        turnedOff = true;
+    }
+
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
     private void OnCollisionEnter(Collision collision)
     {

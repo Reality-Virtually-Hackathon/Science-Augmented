@@ -80,62 +80,161 @@ public class StudentArController : MonoBehaviour
         }
     }
 
-    EducationModel demo;
+    bool fit;
+    Vector3 startOne;
+    Vector3 startTwo;
+
+    public void SetDemoToModel(EducationModel one, EducationModel two)
+    {
+        fit = true;
+        startOne = one.transform.position;
+        startTwo = two.transform.position;
+        StartCoroutine(StartSetInPlace(one, two));
+    }
+
+    private IEnumerator StartSetInPlace(EducationModel one, EducationModel two, float time = 30)
+    {
+      
+
+        float elapsedTime = 0;
+
+        RandomRotation[] demoRotations = one.GetComponentsInChildren<RandomRotation>();
+        RandomMovement[] demoMovements = one.GetComponentsInChildren<RandomMovement>();
+
+        RandomRotation[] demoRotationst = two.GetComponentsInChildren<RandomRotation>();
+        RandomMovement[] demoMovementst = two.GetComponentsInChildren<RandomMovement>();
+        
+        for (int i = 0; i < demoRotations.Length; i++)
+        {
+            demoRotations[i].SetInPlace();
+        }
+
+        for (int i = 0; i < demoMovements.Length; i++)
+        {
+            demoMovements[i].SetBack();
+        }
+
+        for (int i = 0; i < demoRotationst.Length; i++)
+        {
+            demoRotationst[i].SetInPlace();
+        }
+
+        for (int i = 0; i < demoMovementst.Length; i++)
+        {
+            demoMovementst[i].SetBack();
+        }
+
+        while (elapsedTime < time)
+        {
+            one.transform.position = Vector3.Lerp(one.transform.position, (one.transform.position+ two.transform.position)/2, ( elapsedTime / time ));
+            two.transform.position = Vector3.Lerp(two.transform.position, ( one.transform.position + two.transform.position ) / 2, ( elapsedTime / time ));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
     public void CompareEducationModelEnter(EducationModel one, EducationModel two)
     {
-        if(demo != null)
+        if (fit)
             return;
+
+            
+            SetDemoToModel(one,two);
         
-        if (one.Value == two.Value)
-        {
-          demo = Instantiate(one, one.transform.position - two.transform.position,
-                                              two.transform.parent.rotation);
-            demo.gameObject.transform.localScale = Vector3.one/ 10;
-            ShowChild demoChildren = demo.GetComponentInChildren<ShowChild>();
-            demoChildren.ShowChildIndex(0);
-            demoChildren.ShowChildIndex(1);
-            RandomRotation demoRotation = demo.GetComponentInChildren<RandomRotation>();
-            demoRotation.SetInPlace();
 
-            for (int i = 0; i < one.transform.childCount; i++)
-            {
-                MeshRenderer render = one.transform.GetChild(i).GetComponent<MeshRenderer>();
-                if (render)
-                    render.enabled = false;
-            }
-            for (int i = 0; i < two.transform.childCount; i++)
-            {
-                MeshRenderer render = two.transform.GetChild(i).GetComponent<MeshRenderer>();
-                if (render)
-                    render.enabled = false;
-            }
+      
 
-        }
+        
     }
 
+    IEnumerator SetBack(EducationModel one, EducationModel two, float time = 30)
+    {
+
+
+        float elapsedTime = 0;
+
+        one.transform.position = startOne;
+        two.transform.position = startTwo;
+        //while (elapsedTime < time)
+        //{
+        //one.transform.localPosition = Vector3.Lerp(one.transform.localPosition, startOne, ( elapsedTime / time ));
+        //    two.transform.localPosition = Vector3.Lerp(two.transform.localPosition,startTwo, ( elapsedTime / time ));
+        //    elapsedTime += Time.deltaTime;
+        //    yield return null;
+        //}
+
+        RandomRotation[] demoRotations = one.GetComponentsInChildren<RandomRotation>();
+        RandomMovement[] demoMovements = one.GetComponentsInChildren<RandomMovement>();
+
+        RandomRotation[] demoRotationst = two.GetComponentsInChildren<RandomRotation>();
+        RandomMovement[] demoMovementst = two.GetComponentsInChildren<RandomMovement>();
+
+        for (int i = 0; i < demoRotations.Length; i++)
+        {
+            demoRotations[i].StartRandomRotation();
+        }
+
+        for (int i = 0; i < demoMovements.Length; i++)
+        {
+            demoMovements[i].SetRandom();
+        }
+
+        for (int i = 0; i < demoRotationst.Length; i++)
+        {
+            demoRotationst[i].StartRandomRotation();
+        }
+
+        for (int i = 0; i < demoMovementst.Length; i++)
+        {
+            demoMovementst[i].SetRandom();
+        }
+        fit = false;
+        yield return null;
+    }
+
+   
     public void CompareEducationModelExit(EducationModel one, EducationModel two)
     {
-        if (demo == null)
+        if (fit == false)
             return;
-            Destroy(demo.gameObject);
-        for (int i = 0; i < one.transform.childCount; i++)
+        StopAllCoroutines();
+
+
+        one.transform.position = startOne;
+        two.transform.position = startTwo;
+   
+
+        RandomRotation[] demoRotations = one.GetComponentsInChildren<RandomRotation>();
+        RandomMovement[] demoMovements = one.GetComponentsInChildren<RandomMovement>();
+
+        RandomRotation[] demoRotationst = two.GetComponentsInChildren<RandomRotation>();
+        RandomMovement[] demoMovementst = two.GetComponentsInChildren<RandomMovement>();
+
+        for (int i = 0; i < demoRotations.Length; i++)
         {
-            MeshRenderer render = one.transform.GetChild(i).GetComponent<MeshRenderer>();
-            if (render)
-                render.enabled = true;
+            demoRotations[i].StartRandomRotation();
         }
-        for (int i = 0; i < two.transform.childCount; i++)
+
+        for (int i = 0; i < demoMovements.Length; i++)
         {
-            MeshRenderer render = two.transform.GetChild(i).GetComponent<MeshRenderer>();
-            if (render)
-                render.enabled = true;
+            demoMovements[i].SetRandom();
         }
-     
+
+        for (int i = 0; i < demoRotationst.Length; i++)
+        {
+            demoRotationst[i].StartRandomRotation();
+        }
+
+        for (int i = 0; i < demoMovementst.Length; i++)
+        {
+            demoMovementst[i].SetRandom();
+        }
+        fit = false;
+
+
+
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+
 	#endif
 }

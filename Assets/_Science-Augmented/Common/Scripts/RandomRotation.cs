@@ -14,20 +14,22 @@ public class RandomRotation : MonoBehaviour {
         StartRandomRotation();
     }
 
-    public void SetInPlace(float time = 2)
+    public void SetInPlace(float time = 5)
     {
         fit = true;
         StopAllCoroutines();
+        if(gameObject.activeSelf)
         StartCoroutine(StartSetInPlace(time));
     }
 
     public void StartRandomRotation()
     {
         fit = false;
-        StartCoroutine(ChangeRotation());
+        if (gameObject.activeSelf)
+            StartCoroutine(ChangeRotation());
     }
 
-    private IEnumerator StartSetInPlace( float time = 2)
+    private IEnumerator StartSetInPlace( float time = 5)
     {
         fit = true;
 

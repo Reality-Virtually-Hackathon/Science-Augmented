@@ -8,10 +8,7 @@ public class ShowChild : MonoBehaviour
     public bool ShowOnStart =false;
 	// Use this for initialization
 	void Start () {
-	    for (int i = 0; i < transform.childCount; i++)
-	    {
-	        transform.GetChild(i).gameObject.SetActive(false);
-	    }
+	 
 	    if (ShowOnStart)
 	    {
 	        ShowChildIndex(ChildToShow);

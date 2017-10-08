@@ -248,6 +248,7 @@
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherButtons\TeacherStateButton.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherView.cs" />
     <Compile Include="Assets\_Science-Augmented\Common\Scripts\OnCollisionEvents.cs" />
+    <Compile Include="Assets\_Science-Augmented\Common\Scripts\RandomMovement.cs" />
     <Compile Include="Assets\_Science-Augmented\Common\Scripts\RandomRotation.cs" />
     <Compile Include="Assets\_Science-Augmented\Common\Scripts\ShowChild.cs" />
     <Compile Include="Assets\FarlandSkies\Demo\Scripts\Player\FPSWalkerEnhanced.cs" />
