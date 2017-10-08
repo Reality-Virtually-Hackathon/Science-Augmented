@@ -90,15 +90,24 @@ public class StudentArController : MonoBehaviour
             model.Enzyme = models[i].Enzyme;
             model.Value = models[i].Value;
             model.CombinedValue = models[i].CombinedValue;
-            if (childEnable)
+            InfoKey[] modelkeys = model.GetComponentsInChildren<InfoKey>(true);
+            for (int j = 0; j < modelkeys.Length; j++)
             {
+                if (modelkeys[i].Key == model.Key)
+                {
+                    childEnable.TurnOff();
+                    modelkeys[i].gameObject.SetActive(true);
+                    break;
+                }
+            }
+       
                 childEnable.ChildToShow = models[i].Key - 1;
                 childEnable.ShowChildIndex(models[i].Key - 1);
-            }
+            
 
             if (collisionEventTrigger != null)
             {
-                print("Collition Events Created");
+                
                 collisionEventTrigger.OnCollisionEnterEvent.AddListener(CompareEducationModelEnter);
                 collisionEventTrigger.OnCollisionExitEvent.AddListener(CompareEducationModelExit);
             }

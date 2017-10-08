@@ -6,8 +6,9 @@ public class ShowChild : MonoBehaviour
 {
     public int ChildToShow;
     public bool ShowOnAwake =false;
-	// Use this for initialization
-	void Awake () {
+    List<EducationModel> models;
+    // Use this for initialization
+    void Awake () {
 
 	    for (int i = 0; i < transform.childCount; i++)
 	    {
@@ -17,6 +18,7 @@ public class ShowChild : MonoBehaviour
 	    {
 	        ShowChildIndex(ChildToShow);
 	    }
+        models = new List<EducationModel>(transform.GetComponentsInChildren<EducationModel>(true));
 	}
 
     void Start()
@@ -30,6 +32,17 @@ public class ShowChild : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
+    }
+
+    public void ShowChildByKey(int key)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+        EducationModel model = models.Find(e => e.Key == key);
+        model.gameObject.SetActive(true);
+
     }
 
     public void ShowChildIndex(int index)
