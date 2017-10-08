@@ -16,7 +16,7 @@ public class TeacherView : MonoBehaviour {
 	public TeacherViewState currentState;
 	public GameObject LearningObjectivePanel;
 	public static TeacherView sInstance;
-
+	public Animator[] animators;
 
 	[HideInInspector]
 	public TeacherStateEvent OnChangeState = new TeacherStateEvent ();
@@ -77,11 +77,23 @@ public class TeacherView : MonoBehaviour {
 	}
 
 	public void StartAnimation(){
+		for (int i = 0; i < animators.Length; i++) {
+			if (animators [i].enabled) {
+				animators[i].Rebind();
+			}
+			animators [i].enabled = true;
+
+		}
 		if(NetworkClassroomManager.sInstance)
 		NetworkClassroomManager.sInstance.StartAnimation ();
 	}
 
 	public void StopAnimation(){
+		
+		for (int i = 0; i < animators.Length; i++) {
+			animators[i].enabled = false;
+		}
+
 		if(NetworkClassroomManager.sInstance)
 		NetworkClassroomManager.sInstance.StopAnimation ();
 	}
