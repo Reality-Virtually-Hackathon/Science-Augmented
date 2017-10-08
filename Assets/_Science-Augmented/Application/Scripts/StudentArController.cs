@@ -25,7 +25,7 @@ public class StudentArController : MonoBehaviour
     void Start ()
     {
 #if UNITY_EDITOR
-        ChangeModel(new[] {1, 2});
+      //  ChangeModel(new[] {1, 2});
 
 #endif
 
@@ -257,6 +257,7 @@ public class StudentArController : MonoBehaviour
         }
         foreach (ChangeColor changeColor in changeColorList)
         {
+            if(changeColor)
             changeColor.SetBackToStartColor(1);
         }
         
