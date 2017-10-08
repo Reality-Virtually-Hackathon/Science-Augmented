@@ -58,7 +58,7 @@ namespace Prototype.NetworkLobby
         {
             lobbyManager.StartMatchMaker();
             lobbyManager.matchMaker.CreateMatch(
-                matchNameInput.text,
+				"Biology Class " + (Random.Range(1,8)),
                 (uint)lobbyManager.maxPlayers,
                 true,
 				"", "", "", 0, 0,

@@ -15,7 +15,7 @@ public class TeacherView : NetworkBehaviour {
 	public TeacherViewState currentState;
 	public GameObject LearningObjectivePanel;
 	public static TeacherView sInstance;
-	public Text RoomName;
+
 
 	[HideInInspector]
 	public TeacherStateEvent OnChangeState = new TeacherStateEvent ();
@@ -25,7 +25,7 @@ public class TeacherView : NetworkBehaviour {
 	}
 
 	void Start(){
-		RoomName.text = "New Room" ;
+		
 
 		if (currentActivity != null) {
 			currentActivity.DisableView ();
@@ -60,6 +60,8 @@ public class TeacherView : NetworkBehaviour {
 	}
 
 	public void ChangeIntroductionModel(int ID){
+
+
 		int players = Network.connections.Length;
 		int[] modelValues = new int[players];
 		int currentIndex= 0;
