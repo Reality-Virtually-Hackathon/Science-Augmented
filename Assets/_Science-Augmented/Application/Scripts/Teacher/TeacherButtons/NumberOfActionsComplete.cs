@@ -13,7 +13,7 @@ public class NumberOfActionsComplete : MonoBehaviour {
 	void Start () {
 		thisText.GetComponent<Text> ();
 		NetworkClassroomManager.sInstance.OnStudentComplete.AddListener (AddPoints);
-		NetworkClassroomManager.sInstance.OnStudentDestroy.AddListerner (RemovePoints);
+		NetworkClassroomManager.sInstance.OnStudentDestroy.AddListener(RemovePoints);
 	}
 
 	void AddPoints(){
