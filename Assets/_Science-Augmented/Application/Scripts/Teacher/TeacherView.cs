@@ -10,13 +10,13 @@ public enum TeacherViewState{Introduction,Game,Challenge}
 
 public class TeacherStateEvent: UnityEvent<TeacherViewState>{}
 
-public class TeacherView : NetworkBehaviour {
+public class TeacherView : MonoBehaviour {
 
 	public TeacherActivity currentActivity;
 	public TeacherViewState currentState;
 	public GameObject LearningObjectivePanel;
 	public static TeacherView sInstance;
-	public TextMeshProUGUI StudentCount;
+
 
 	[HideInInspector]
 	public TeacherStateEvent OnChangeState = new TeacherStateEvent ();
@@ -26,7 +26,7 @@ public class TeacherView : NetworkBehaviour {
 	}
 
 	void Start(){
-		StudentCount.text = "(" + Network.connections.Length + ")";
+		
 		LearningObjectivePanel.SetActive (true);
 		if (currentActivity != null) {
 			currentActivity.DisableView ();
@@ -63,34 +63,16 @@ public class TeacherView : NetworkBehaviour {
 	public void ChangeIntroductionModel(int ID){
 
 
-		int players = Network.connections.Length+1;
-		int[] modelValues = new int[players];
-		int currentIndex= 0;
-
-		for (int i = 0; i < players; i++) {
-			modelValues [i] = ID;
-		}
+		int[] modelValues = new int[1];
+		modelValues [0] = ID;
 
 		if(NetworkClassroomManager.sInstance)
 			NetworkClassroomManager.sInstance.UpdateModels (modelValues);
 	}
 
 	public void ChangeModel(int[] ID){
-		int players = Network.connections.Length+1;
-		int[] modelValues = new int[players];
-		int currentIndex= 0;
-
-		for (int i = 0; i < players; i++) {
-			if (currentIndex < ID.Length) {
-				modelValues [i] = ID [currentIndex];
-				currentIndex ++;
-			} else {
-				currentIndex = 0;
-				modelValues [i] = ID [currentIndex];
-			}
-		}
 		if(NetworkClassroomManager.sInstance)
-		NetworkClassroomManager.sInstance.UpdateModels (modelValues);
+		NetworkClassroomManager.sInstance.UpdateModels (ID);
 
 	}
 
