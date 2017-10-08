@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Enumerable = System.Linq.Enumerable;
 
 
 public class StudentArController : MonoBehaviour
@@ -14,7 +14,7 @@ public class StudentArController : MonoBehaviour
     private EducationalModelData data;
     [SerializeField]
     ArView arView;
-
+    
    
     private List<GameObject> objectAnchors = new List<GameObject>();
    
@@ -29,6 +29,19 @@ public class StudentArController : MonoBehaviour
         {
             arView = FindObjectOfType<ArView>();
         }
+        if (NetworkClassroomManager.sInstance)
+        {
+            NetworkClassroomManager.sInstance.OnPlayerModelsChange.AddListener(ChangeModel);
+        }
+    }
+
+    void ChangeModel(int[] modelKeys)
+    {
+        List<EducationModel> tempList = Enumerable.ToList(Enumerable.Where
+                                                              (Enumerable.Select(modelKeys,
+                                                              t => data.GetEducationModelById(t)),
+                                                              model => model != null));
+        CreateModels(tempList);
     }
 
     public void SetInstructionText(string value)
