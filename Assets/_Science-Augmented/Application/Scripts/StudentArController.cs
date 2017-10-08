@@ -24,9 +24,10 @@ public class StudentArController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+#if UNITY_EDITOR
         ChangeModel(new[] {1, 2});
 
-
+#endif
 
         if (arView == null)
         {
