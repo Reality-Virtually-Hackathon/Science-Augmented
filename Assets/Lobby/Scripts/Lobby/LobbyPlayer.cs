@@ -120,7 +120,7 @@ namespace Prototype.NetworkLobby
 					CmdNameChanged("Teacher");
 			#else
 				if (playerName == "")
-					CmdNameChanged("Student" + (LobbyPlayerList._instance.playerListContentTransform.childCount-2));
+					CmdNameChanged("Student" + (LobbyPlayerList._instance.playerListContentTransform.childCount-1));
 	
 			#endif
 
