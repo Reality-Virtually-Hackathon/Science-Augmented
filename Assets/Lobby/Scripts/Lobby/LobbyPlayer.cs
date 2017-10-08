@@ -115,15 +115,14 @@ namespace Prototype.NetworkLobby
             readyButton.transform.GetChild(0).GetComponent<Text>().text = "JOIN";
             readyButton.interactable = true;
 
-            //have to use child count of player prefab already setup as "this.slot" is not set yet
-			if (LobbyPlayerList._instance.playerListContentTransform.childCount - 1 == 1) {
+			#if UNITY_STANDALONE_OSX 
 				if (playerName == "")
 					CmdNameChanged("Teacher");
-			} else {
+			#else
 				if (playerName == "")
 					CmdNameChanged("Student" + (LobbyPlayerList._instance.playerListContentTransform.childCount-2));
-			}
-          
+	
+			#endif
 
             //we switch from simple name display to name input
             colorButton.interactable = true;
