@@ -39,7 +39,7 @@ public class StudentArController : MonoBehaviour
             NetworkClassroomManager.sInstance.OnStopAnimation.AddListener(PauseAnimation);
         }
         
-        ChangeModel(new []{1,2});
+       
      
     }
 
