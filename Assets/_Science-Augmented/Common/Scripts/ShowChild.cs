@@ -5,11 +5,11 @@ using UnityEngine;
 public class ShowChild : MonoBehaviour
 {
     public int ChildToShow;
-    public bool ShowOnStart =false;
+    public bool ShowOnAwake =false;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 	 
-	    if (ShowOnStart)
+	    if (ShowOnAwake)
 	    {
 	        ShowChildIndex(ChildToShow);
 	    }

@@ -699,8 +699,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4395141300198944}
-  - component: {fileID: 114371793082615884}
-  - component: {fileID: 114059364160193638}
+  - component: {fileID: 114090346927155818}
+  - component: {fileID: 114981680675021178}
   m_Layer: 0
   m_Name: Model1
   m_TagString: Untagged
@@ -4099,6 +4099,7 @@ GameObject:
   - component: {fileID: 4337382157659548}
   - component: {fileID: 114124651759036514}
   - component: {fileID: 114340721358118158}
+  - component: {fileID: 114562927674328740}
   m_Layer: 0
   m_Name: Models (1)
   m_TagString: Untagged
@@ -9066,8 +9067,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1092687193152668}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4818082522526204}
@@ -27912,7 +27913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771c340e090e23b4fa7659fd25188ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114059364160193638
+--- !u!114 &114090346927155818
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -27920,9 +27921,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092687193152668}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 771c340e090e23b4fa7659fd25188ee7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ea1c32537e744b4e94f8764369dacbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotationSpeeds: {x: 0.5, y: 2, z: 0.1}
+  RotationSpeedMin: {x: 0, y: 0, z: 0}
+  RotationSpeedsMax: {x: 50, y: 50, z: 50}
+  ChangeTime: 1
 --- !u!114 &114124651759036514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27935,7 +27940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChildToShow: 1
-  ShowOnStart: 1
+  ShowOnAwake: 0
 --- !u!114 &114177715377120862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28008,21 +28013,6 @@ MonoBehaviour:
   RotationSpeedMin: {x: 0, y: 0, z: 0}
   RotationSpeedsMax: {x: 5, y: 5, z: 5}
   ChangeTime: 1
---- !u!114 &114371793082615884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1092687193152668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ea1c32537e744b4e94f8764369dacbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RotationSpeeds: {x: 0.5, y: 0.2, z: 0.1}
-  RotationSpeedMin: {x: 0, y: 0, z: 0}
-  RotationSpeedsMax: {x: 50, y: 50, z: 50}
-  ChangeTime: 1
 --- !u!114 &114390243892799558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28038,6 +28028,19 @@ MonoBehaviour:
   RotationSpeedMin: {x: 0, y: 0, z: 0}
   RotationSpeedsMax: {x: 50, y: 50, z: 50}
   ChangeTime: 1
+--- !u!114 &114562927674328740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1582067347526074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcb250254994514394c3dc281ff6b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetSelectedChild: 0
+  SelectedChild: 0
 --- !u!114 &114739239239250508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28053,3 +28056,14 @@ MonoBehaviour:
   RotationSpeedMin: {x: 0, y: 0, z: 0}
   RotationSpeedsMax: {x: 5, y: 5, z: 5}
   ChangeTime: 1
+--- !u!114 &114981680675021178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1092687193152668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 771c340e090e23b4fa7659fd25188ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

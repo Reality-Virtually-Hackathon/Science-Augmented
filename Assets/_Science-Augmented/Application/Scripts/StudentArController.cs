@@ -70,7 +70,7 @@ public class StudentArController : MonoBehaviour
             EducationModel arEducationModel = Instantiate(models[i], objectAnchors[i].transform);
             arEducationModel.transform.localPosition = Vector3.zero;
             arEducationModel.transform.localScale = Vector3.one / 10;
-            print(arEducationModel.transform.localScale);
+           
             if (collisionEventTrigger != null)
             {
                 collisionEventTrigger.OnCollisionEnterEvent.AddListener(CompareEducationModelEnter);
@@ -81,48 +81,23 @@ public class StudentArController : MonoBehaviour
     }
 
     bool fit;
-    Vector3 startOne;
-    Vector3 startTwo;
-
+ 
     public void SetDemoToModel(EducationModel one, EducationModel two)
     {
         fit = true;
-        startOne = one.transform.position;
-        startTwo = two.transform.position;
-        StartCoroutine(StartSetInPlace(one, two));
+        LerpChildPosition childEffectsOne = one.gameObject.GetComponentInChildren<LerpChildPosition>();
+        LerpChildPosition childEffectsTwo = two.gameObject.GetComponentInChildren<LerpChildPosition>();
+        childEffectsOne.StartLerpTo(Vector3.forward * -4, 50);
+        childEffectsTwo.StartLerpTo(Vector3.forward * -4, 50);
+        StartCoroutine(StartSetInPlace(one, two, 50));
     }
 
-    private IEnumerator StartSetInPlace(EducationModel one, EducationModel two, float time = 30)
+    private IEnumerator StartSetInPlace(EducationModel one, EducationModel two, float time = 50)
     {
       
 
         float elapsedTime = 0;
 
-        RandomRotation[] demoRotations = one.GetComponentsInChildren<RandomRotation>();
-        RandomMovement[] demoMovements = one.GetComponentsInChildren<RandomMovement>();
-
-        RandomRotation[] demoRotationst = two.GetComponentsInChildren<RandomRotation>();
-        RandomMovement[] demoMovementst = two.GetComponentsInChildren<RandomMovement>();
-        
-        for (int i = 0; i < demoRotations.Length; i++)
-        {
-            demoRotations[i].SetInPlace();
-        }
-
-        for (int i = 0; i < demoMovements.Length; i++)
-        {
-            demoMovements[i].SetBack();
-        }
-
-        for (int i = 0; i < demoRotationst.Length; i++)
-        {
-            demoRotationst[i].SetInPlace();
-        }
-
-        for (int i = 0; i < demoMovementst.Length; i++)
-        {
-            demoMovementst[i].SetBack();
-        }
 
         while (elapsedTime < time)
         {
@@ -140,57 +115,14 @@ public class StudentArController : MonoBehaviour
 
             
             SetDemoToModel(one,two);
-        
+        fit = true;
 
-      
 
-        
+
+
     }
 
-    IEnumerator SetBack(EducationModel one, EducationModel two, float time = 30)
-    {
-
-
-        float elapsedTime = 0;
-
-        one.transform.position = startOne;
-        two.transform.position = startTwo;
-        //while (elapsedTime < time)
-        //{
-        //one.transform.localPosition = Vector3.Lerp(one.transform.localPosition, startOne, ( elapsedTime / time ));
-        //    two.transform.localPosition = Vector3.Lerp(two.transform.localPosition,startTwo, ( elapsedTime / time ));
-        //    elapsedTime += Time.deltaTime;
-        //    yield return null;
-        //}
-
-        RandomRotation[] demoRotations = one.GetComponentsInChildren<RandomRotation>();
-        RandomMovement[] demoMovements = one.GetComponentsInChildren<RandomMovement>();
-
-        RandomRotation[] demoRotationst = two.GetComponentsInChildren<RandomRotation>();
-        RandomMovement[] demoMovementst = two.GetComponentsInChildren<RandomMovement>();
-
-        for (int i = 0; i < demoRotations.Length; i++)
-        {
-            demoRotations[i].StartRandomRotation();
-        }
-
-        for (int i = 0; i < demoMovements.Length; i++)
-        {
-            demoMovements[i].SetRandom();
-        }
-
-        for (int i = 0; i < demoRotationst.Length; i++)
-        {
-            demoRotationst[i].StartRandomRotation();
-        }
-
-        for (int i = 0; i < demoMovementst.Length; i++)
-        {
-            demoMovementst[i].SetRandom();
-        }
-        fit = false;
-        yield return null;
-    }
+  
 
    
     public void CompareEducationModelExit(EducationModel one, EducationModel two)
@@ -198,37 +130,12 @@ public class StudentArController : MonoBehaviour
         if (fit == false)
             return;
         StopAllCoroutines();
-
-
-        one.transform.position = startOne;
-        two.transform.position = startTwo;
-   
-
-        RandomRotation[] demoRotations = one.GetComponentsInChildren<RandomRotation>();
-        RandomMovement[] demoMovements = one.GetComponentsInChildren<RandomMovement>();
-
-        RandomRotation[] demoRotationst = two.GetComponentsInChildren<RandomRotation>();
-        RandomMovement[] demoMovementst = two.GetComponentsInChildren<RandomMovement>();
-
-        for (int i = 0; i < demoRotations.Length; i++)
-        {
-            demoRotations[i].StartRandomRotation();
-        }
-
-        for (int i = 0; i < demoMovements.Length; i++)
-        {
-            demoMovements[i].SetRandom();
-        }
-
-        for (int i = 0; i < demoRotationst.Length; i++)
-        {
-            demoRotationst[i].StartRandomRotation();
-        }
-
-        for (int i = 0; i < demoMovementst.Length; i++)
-        {
-            demoMovementst[i].SetRandom();
-        }
+        one.transform.localPosition = Vector3.zero;
+        two.transform.localPosition = Vector3.zero;
+        LerpChildPosition childEffectsOne = one.gameObject.GetComponentInChildren<LerpChildPosition>();
+        LerpChildPosition childEffectsTwo = two.gameObject.GetComponentInChildren<LerpChildPosition>();
+        childEffectsOne.LerpBackToStart( 1);
+        childEffectsTwo.LerpBackToStart(1);
         fit = false;
 
 
