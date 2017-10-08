@@ -33,8 +33,10 @@ public class OnCollisionEvents : MonoBehaviour
         }
 
         EducationModel collisonModel = collision.gameObject.GetComponentInChildren<EducationModel>();
-        if(collisonModel!= null)
+        print("Hit");
+        if (collisonModel!= null)
         {
+            print("Invoke");
             OnCollisionEnterEvent.Invoke(thisEducationModel,collisonModel);
             if(!collisionObjects.Contains(collisonModel))
             {

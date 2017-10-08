@@ -47,25 +47,7 @@ public class StudentArController : MonoBehaviour
         }
         objectAnchors = new List<GameObject>();
         
-        for (int i = 0; i < data.EducationModels.Count; i++)
-        {
-            int imageTargetNumber = i % (imageTargetPrefabs.Count);
-            Vuforia.ImageTargetBehaviour imageTarget = Instantiate(imageTargetPrefabs[imageTargetNumber]);
-
-            OnCollisionEvents collisionEventTrigger = imageTarget.gameObject.GetComponentInChildren<OnCollisionEvents>();
-
-            objectAnchors.Add(imageTarget.transform.GetChild(0).gameObject);
-            EducationModel arEducationModel = Instantiate(data.EducationModels[i], objectAnchors[i].transform);
-            arEducationModel.transform.localPosition = Vector3.zero;
-            arEducationModel.transform.localScale = Vector3.one / 2;
-
-            if (collisionEventTrigger != null)
-            {
-                collisionEventTrigger.OnCollisionEnterEvent.AddListener(CompareEducationModelEnter);
-                collisionEventTrigger.OnCollisionExitEvent.AddListener(CompareEducationModelExit);
-            }
-
-        }
+      CreateModels(data.EducationModels);
     }
 
 
@@ -79,16 +61,16 @@ public class StudentArController : MonoBehaviour
         
         for (int i = 0; i < models.Count; i++)
         {
-            int imageTargetNumber = i % ( imageTargetPrefabs.Count - 1 );
+            int imageTargetNumber = i % ( imageTargetPrefabs.Count);
             Vuforia.ImageTargetBehaviour imageTarget = Instantiate(imageTargetPrefabs[imageTargetNumber]);
 
-            OnCollisionEvents collisionEventTrigger = imageTarget.gameObject.GetComponent<OnCollisionEvents>();
+            OnCollisionEvents collisionEventTrigger = imageTarget.gameObject.GetComponentInChildren<OnCollisionEvents>();
 
             objectAnchors.Add(imageTarget.transform.GetChild(0).gameObject);
             EducationModel arEducationModel = Instantiate(models[i], objectAnchors[i].transform);
             arEducationModel.transform.localPosition = Vector3.zero;
-            arEducationModel.transform.localScale = Vector3.one / 2;
-
+            arEducationModel.transform.localScale = Vector3.one / 10;
+            print(arEducationModel.transform.localScale);
             if (collisionEventTrigger != null)
             {
                 collisionEventTrigger.OnCollisionEnterEvent.AddListener(CompareEducationModelEnter);
@@ -98,14 +80,57 @@ public class StudentArController : MonoBehaviour
         }
     }
 
+    EducationModel demo;
     public void CompareEducationModelEnter(EducationModel one, EducationModel two)
     {
+        if(demo != null)
+            return;
         
+        if (one.Value == two.Value)
+        {
+          demo = Instantiate(one, one.transform.position - two.transform.position,
+                                              two.transform.parent.rotation);
+            demo.gameObject.transform.localScale = Vector3.one/ 10;
+            ShowChild demoChildren = demo.GetComponentInChildren<ShowChild>();
+            demoChildren.ShowChildIndex(0);
+            demoChildren.ShowChildIndex(1);
+            RandomRotation demoRotation = demo.GetComponentInChildren<RandomRotation>();
+            demoRotation.SetInPlace();
+
+            for (int i = 0; i < one.transform.childCount; i++)
+            {
+                MeshRenderer render = one.transform.GetChild(i).GetComponent<MeshRenderer>();
+                if (render)
+                    render.enabled = false;
+            }
+            for (int i = 0; i < two.transform.childCount; i++)
+            {
+                MeshRenderer render = two.transform.GetChild(i).GetComponent<MeshRenderer>();
+                if (render)
+                    render.enabled = false;
+            }
+
+        }
     }
 
     public void CompareEducationModelExit(EducationModel one, EducationModel two)
     {
-
+        if (demo == null)
+            return;
+            Destroy(demo.gameObject);
+        for (int i = 0; i < one.transform.childCount; i++)
+        {
+            MeshRenderer render = one.transform.GetChild(i).GetComponent<MeshRenderer>();
+            if (render)
+                render.enabled = true;
+        }
+        for (int i = 0; i < two.transform.childCount; i++)
+        {
+            MeshRenderer render = two.transform.GetChild(i).GetComponent<MeshRenderer>();
+            if (render)
+                render.enabled = true;
+        }
+     
     }
 
     // Update is called once per frame

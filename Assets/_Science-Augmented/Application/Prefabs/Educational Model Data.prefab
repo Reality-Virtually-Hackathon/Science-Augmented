@@ -54,6 +54,3 @@ MonoBehaviour:
   EducationModels:
   - {fileID: 114936921817919286, guid: 1c0a6e081cd487d4ab68a99ceb074d71, type: 2}
   - {fileID: 114340721358118158, guid: 769e4a314220c394398340ce66f3ba65, type: 2}
-  - {fileID: 114582849719344868, guid: 97c9c498aca34f241bde0f0e0b6f75ca, type: 2}
-  - {fileID: 114517745981052330, guid: 9cebef101079a1c4a9b19157e5890fa2, type: 2}
-  - {fileID: 114352102273162064, guid: c23ca6d334fe8e84cae37deb9088514e, type: 2}

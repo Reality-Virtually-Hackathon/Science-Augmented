@@ -27921,7 +27921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: 3
   CombinedValue: 
-  Value: 3
+  Value: 2
   Enzyme: 1
   Model: {fileID: 1991207178231612}
 --- !u!114 &114994398743194510
