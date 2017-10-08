@@ -63,7 +63,7 @@ public class TeacherView : NetworkBehaviour {
 	public void ChangeIntroductionModel(int ID){
 
 
-		int players = Network.connections.Length;
+		int players = Network.connections.Length+1;
 		int[] modelValues = new int[players];
 		int currentIndex= 0;
 
@@ -76,7 +76,7 @@ public class TeacherView : NetworkBehaviour {
 	}
 
 	public void ChangeModel(int[] ID){
-		int players = Network.connections.Length;
+		int players = Network.connections.Length+1;
 		int[] modelValues = new int[players];
 		int currentIndex= 0;
 

@@ -124,6 +124,9 @@ public class NetworkClassroomManager : NetworkBehaviour {
 	[ClientRpc]
 	public void RpcUpdateModels(int[] models){
 		Debug.Log (models.Length);
+		for (int i = 0; i < models.Length; i++) {
+			Debug.Log (models[i]);
+		}
 		OnPlayerModelsChange.Invoke (models);
 
 	}
