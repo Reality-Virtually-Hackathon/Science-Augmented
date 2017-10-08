@@ -15,10 +15,14 @@ public class ClassInfoText : MonoBehaviour {
 		if (hours<12) {
 			time = hours;
 			prefix = "am";
-		} else {
+		} else if (hours==12) {
+			time = hours;
+			prefix = "pm";
+		}else{
 			time = hours-12;
 			prefix = "pm";
 		}
+
 		string description = ClassName + " @ " + time+prefix;
 		GetComponent<TextMeshProUGUI> ().text = description;
 	}
