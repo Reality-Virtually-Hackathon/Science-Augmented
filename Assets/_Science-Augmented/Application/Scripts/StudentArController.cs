@@ -172,13 +172,15 @@ public class StudentArController : MonoBehaviour
 
     public void CompareEducationModelEnter(List<ModelGroup> models)
     {
-        models.RemoveAll(mod => mod.ActivatedActiveModel.Value != models[0].ActivatedActiveModel.Value);
+       
         List<ModelGroup> CompareModel = new List<ModelGroup>();
         bool enzyme = false;
+        EducationModel enzymeModel = null;
         for (int i = 0; i < models.Count; i++)
         {
             if (enzyme == false && models[i].IsEnzyme())
             {
+                enzymeModel = models[i].ActivatedActiveModel;
                 CompareModel.Add(models[i]);
                 enzyme = true;
             }
@@ -187,6 +189,9 @@ public class StudentArController : MonoBehaviour
                 CompareModel.Add(models[i]);
             }
         }
+        if (enzymeModel == null)
+            return;
+        models.RemoveAll(mod => mod.ActivatedActiveModel.Value != enzymeModel.Value);
         if (fit)
             return;
         if (CompareModel.Count < 2)
