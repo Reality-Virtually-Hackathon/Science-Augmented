@@ -141,7 +141,7 @@ public class StudentArController : MonoBehaviour
             LerpChildPosition childEffects = models[i].ActivatedActiveModel.gameObject.GetComponentInChildren<LerpChildPosition>();
             if(childEffects)
             childEffects.StartLerpTo(Vector3.zero, 1);
-            models[i].StartLocal = models[i].transform.localPosition;
+            
         }
       
         StartCoroutine(StartSetInPlace(models, 50));

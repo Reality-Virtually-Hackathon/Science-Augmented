@@ -79,6 +79,10 @@ public class OnCollisionEvents : MonoBehaviour
             {
                 collisionObjects.Add(collisonModel);
             }
+            for (int i = 0; i < collisionObjects.Count; i++)
+            {
+                collisionObjects[i].transform.localPosition = collisionObjects[i].StartLocal;
+            }
             int combinedValue = thisEducationModel.ActivatedActiveModel.Value;
             collisionObjects.Add(thisEducationModel);
             OnCollisionEnterEvent.Invoke(collisionObjects);
