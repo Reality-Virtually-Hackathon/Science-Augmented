@@ -25,7 +25,7 @@ public class StudentArController : MonoBehaviour
     void Start ()
     {
 #if UNITY_EDITOR
-        ChangeModel(new[] {1, 2});
+        ChangeModel(new[] {5, 6,7});
 
 #endif
 
@@ -180,7 +180,7 @@ public class StudentArController : MonoBehaviour
 
     public void CompareEducationModelEnter(List<ModelGroup> models)
     {
-       
+     
         List<ModelGroup> CompareModel = new List<ModelGroup>();
         bool enzyme = false;
         EducationModel enzymeModel = null;
@@ -197,14 +197,20 @@ public class StudentArController : MonoBehaviour
                 CompareModel.Add(models[i]);
             }
         }
+       
+     
         if (enzymeModel == null)
             return;
-        models.RemoveAll(mod => mod.ActivatedActiveModel.Value != enzymeModel.Value);
+
+       
+        
+        CompareModel.RemoveAll(mod => mod.ActivatedActiveModel.Value != enzymeModel.Value);
         if (fit)
             return;
+        print(CompareModel.Count);
         if (CompareModel.Count < 2)
             return;
-      
+    
             StartAnimateModel(CompareModel);
         if (NetworkClassroomManager.sInstance)
             NetworkClassroomManager.sInstance.StudentComplete();

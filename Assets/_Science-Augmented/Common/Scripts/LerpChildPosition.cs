@@ -29,6 +29,9 @@ public class LerpChildPosition : MonoBehaviour
 
     public void LerpBackToStart(float lerpTime = 10)
     {
+        ChangeColor setColor = gameObject.GetComponentInChildren<ChangeColor>();
+        if(setColor)
+        setColor.SetBackToStartColor(1);
         StopAllCoroutines();
         setToPosition = false;
         StartCoroutine(StartSetInPlace(startPosition, lerpTime));

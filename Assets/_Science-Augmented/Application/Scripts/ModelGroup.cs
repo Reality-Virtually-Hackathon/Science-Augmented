@@ -24,7 +24,7 @@ public class ModelGroup : MonoBehaviour
 
     public bool IsEnzyme()
     {
-        return Enumerable.FirstOrDefault(Enumerable.Select(models, t => t.gameObject.activeSelf && t.Enzyme));
+        return Enumerable.FirstOrDefault(Enumerable.Select(models, t => t.Enzyme));
     }
 
     public EducationModel GetModelByKey(int key)

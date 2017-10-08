@@ -70,10 +70,10 @@ public class OnCollisionEvents : MonoBehaviour
         
 
         ModelGroup collisonModel = collision.gameObject.GetComponentInChildren<ModelGroup>();
-        print("Hit");
+    
         if (collisonModel!= null)
         {
-            print("Invoke");
+          
            
             if(!collisionObjects.Contains(collisonModel))
             {
@@ -87,11 +87,7 @@ public class OnCollisionEvents : MonoBehaviour
             collisionObjects.Add(thisEducationModel);
             OnCollisionEnterEvent.Invoke(collisionObjects);
 
-            ModelGroup enzyme = collisionObjects.Find(e => e.IsEnzyme());
-            if(enzyme == false)
-            {
-                return;
-            }
+         
             
 
             combinedValue = Enumerable.Aggregate(collisionObjects, combinedValue, (current, t) => current + t.ActivatedActiveModel.Value);

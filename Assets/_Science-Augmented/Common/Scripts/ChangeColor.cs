@@ -9,7 +9,14 @@ public class ChangeColor : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	    startColor = targets[0].material.color;
+	    if(targets.Count > 0 && targets[0] != null && targets[0].material)
+	    {
+	        startColor = targets[0].material.color;
+	    }
+	    else
+	    {
+	        startColor = Color.white;
+	    }
 	}
 
     public void ChangeToColor(Color changeColor, float time)
