@@ -24,9 +24,10 @@ public class StudentArController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-     
-    
-        
+        ChangeModel(new[] {1, 2});
+
+
+
         if (arView == null)
         {
             arView = FindObjectOfType<ArView>();
@@ -153,16 +154,22 @@ public class StudentArController : MonoBehaviour
 
         float elapsedTime = 0;
         Vector3 pos = Vector3.zero;
+        List<ChangeColor> changeColorList = new List<ChangeColor>();
         for (int i = 0; i < models.Count; i++)
         {
+            changeColorList.Add(models[i].GetComponentInChildren<ChangeColor>());
             pos += models[i].transform.position;
         }
         pos = pos / models.Count;
-
+        foreach (ChangeColor changeColor in changeColorList)
+        {
+            changeColor.ChangeToColor(Color.yellow, 20);
+        }
         while (elapsedTime < time)
         {
             for (int i = 0; i < models.Count; i++)
             {
+                models[i].transform.eulerAngles = models[0].transform.eulerAngles;
                 models[i].transform.position = Vector3.Lerp(models[i].transform.position, pos, ( elapsedTime / time ));
             }
             elapsedTime += Time.deltaTime;
@@ -232,16 +239,21 @@ public class StudentArController : MonoBehaviour
             return;
         
         StopAllCoroutines();
-
+        List<ChangeColor> changeColorList = new List<ChangeColor>();
         for (int i = 0; i < CompareModel.Count; i++)
         {
-            
+            changeColorList.Add(models[i].GetComponentInChildren<ChangeColor>());
             models[i].transform.localPosition = CompareModel[i].StartLocal;
-           
+            models[i].transform. localEulerAngles = Vector3.zero;
             LerpChildPosition childEffects = CompareModel[i].ActivatedActiveModel.gameObject.GetComponentInChildren<LerpChildPosition>();
             childEffects.LerpBackToStart(1);
         }
-        if(NetworkClassroomManager.sInstance)
+        foreach (ChangeColor changeColor in changeColorList)
+        {
+            changeColor.SetBackToStartColor(1);
+        }
+        
+        if (NetworkClassroomManager.sInstance)
         NetworkClassroomManager.sInstance.StudentDestroy();
         fit = false;
 

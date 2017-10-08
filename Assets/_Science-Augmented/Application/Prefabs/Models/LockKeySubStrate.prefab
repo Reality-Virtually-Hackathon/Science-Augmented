@@ -890,6 +890,7 @@ GameObject:
   - component: {fileID: 4413282131172500}
   - component: {fileID: 114936921817919286}
   - component: {fileID: 114964267574093192}
+  - component: {fileID: 114685506107321150}
   m_Layer: 0
   m_Name: LockKeySubStrate
   m_TagString: Untagged
@@ -2441,7 +2442,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4f9843c79516ed1468b9b5a4f32e67e3, type: 2}
+  - {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3668,7 +3669,7 @@ MonoBehaviour:
   m_text: Substrate
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4f9843c79516ed1468b9b5a4f32e67e3, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3692,13 +3693,13 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 514
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
@@ -3769,6 +3770,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771c340e090e23b4fa7659fd25188ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114685506107321150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1946687665238866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c968958d4b3d347a8a8fbfe23b7546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets:
+  - {fileID: 23911209074623008}
+  - {fileID: 23686375163751900}
+  - {fileID: 23858477124415508}
+  - {fileID: 23324682019932080}
+  - {fileID: 23370347895281894}
+  - {fileID: 23774637904129692}
+  - {fileID: 23306693419519288}
+  - {fileID: 23366241194826848}
+  - {fileID: 23069981406440168}
+  - {fileID: 23084451841084194}
+  - {fileID: 23158452014495996}
+  - {fileID: 23032455718151598}
+  - {fileID: 23221965773378600}
+  - {fileID: 23408964285641426}
+  - {fileID: 23143630371126320}
 --- !u!114 &114923547751849336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3824,15 +3852,15 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1503573838338212}
-  m_LocalRotation: {x: 0.53116465, y: -0, z: -0, w: 0.84726864}
-  m_LocalPosition: {x: 0, y: 0.45000434, z: 1.2999997}
-  m_LocalScale: {x: 0.54206383, y: 0.54206383, z: 0.54206383}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.012702942, y: 0.01999998, z: 8.34}
+  m_LocalScale: {x: 0.34991428, y: 0.34991428, z: 0.34991428}
   m_Children: []
   m_Father: {fileID: 4413282131172500}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 64.168, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.4500044}
+  m_AnchoredPosition: {x: 0.012703, y: 0.02}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}

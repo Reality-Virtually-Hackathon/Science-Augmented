@@ -255,6 +255,7 @@
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherView.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\UI\ClassInfoText.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\UI\GreetingText.cs" />
+    <Compile Include="Assets\_Science-Augmented\Common\Scripts\ChangeColor.cs" />
     <Compile Include="Assets\_Science-Augmented\Common\Scripts\InfoKey.cs" />
     <Compile Include="Assets\_Science-Augmented\Common\Scripts\LerpChildPosition.cs" />
     <Compile Include="Assets\_Science-Augmented\Common\Scripts\OnCollisionEvents.cs" />
