@@ -25,7 +25,7 @@ public class StudentArController : MonoBehaviour
     void Start ()
     {
 #if UNITY_EDITOR
-        ChangeModel(new[] {5, 6,7});
+        ChangeModel(new[] {1, 2});
 
 #endif
 
