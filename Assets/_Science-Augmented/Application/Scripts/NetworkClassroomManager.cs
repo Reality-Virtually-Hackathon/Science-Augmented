@@ -27,7 +27,7 @@ public class NetworkClassroomManager : NetworkBehaviour {
 	[HideInInspector]
 	public UnityEvent OnStopAnimation = new UnityEvent();
 
-    [SyncVar] int score;
+	[SyncVar] public int score;
 	protected bool _running = true;
 
 	void Awake()

@@ -8,21 +8,18 @@ public class NumberOfActionsComplete : MonoBehaviour {
 
 	private int scores;
 	private Text thisText;
+	private NetworkClassroomManager manager;
+
+	void Start(){
+		manager = NetworkClassroomManager.sInstance;
+	}
 
 	// Use this for initialization
-	void Start () {
-		thisText.GetComponent<Text> ();
-		NetworkClassroomManager.sInstance.OnStudentComplete.AddListener (AddPoints);
-		NetworkClassroomManager.sInstance.OnStudentDestroy.AddListener(RemovePoints);
+	void Update () {
+		thisText = transform.GetComponent<Text> ();
+		thisText.text = "There are " + manager.score + " Reactions Complete";
+
+
 	}
 
-	void AddPoints(){
-		scores++;
-		thisText.text = "There are " + scores + " Reactions Complete";
-	}
-
-	void RemovePoints(){
-		scores--;
-		thisText.text = "There are " + scores + " Reactions Complete";
-	}
 }
