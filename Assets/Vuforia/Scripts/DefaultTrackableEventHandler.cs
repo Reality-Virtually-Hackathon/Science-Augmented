@@ -77,9 +77,14 @@ public class DefaultTrackableEventHandler : MonoBehaviour
 
     protected virtual void OnTrackingFound()
     {
+        var animatorComponents = GetComponentsInChildren<Animator>(true);
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
         var colliderComponents = GetComponentsInChildren<Collider>(true);
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
+
+        // Enable rendering:
+        foreach (var component in animatorComponents)
+            component.enabled = true;
 
         // Enable rendering:
         foreach (var component in rendererComponents)
@@ -97,10 +102,17 @@ public class DefaultTrackableEventHandler : MonoBehaviour
 
     protected virtual void OnTrackingLost()
     {
+        
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
         var colliderComponents = GetComponentsInChildren<Collider>(true);
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
 
+        var animatorComponents = GetComponentsInChildren<Animator>(true);
+        
+        // Enable rendering:
+        foreach (var component in animatorComponents)
+            component.enabled = false;
+        
         // Disable rendering:
         foreach (var component in rendererComponents)
             component.enabled = false;

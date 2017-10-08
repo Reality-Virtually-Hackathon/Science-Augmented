@@ -20,7 +20,9 @@ public class NetworkClassroomManager : NetworkBehaviour {
 	public UnityEvent OnStopGame = new UnityEvent();
 	[HideInInspector]
 	public UnityEvent OnStudentComplete = new UnityEvent();
-	[HideInInspector]
+    [HideInInspector]
+    public UnityEvent OnStudentDestroy = new UnityEvent();
+    [HideInInspector]
 	public UnityEvent OnStartAnimation = new UnityEvent();
 	[HideInInspector]
 	public UnityEvent OnStopAnimation = new UnityEvent();
@@ -88,8 +90,18 @@ public class NetworkClassroomManager : NetworkBehaviour {
 		RpcStopAnimation ();
 	}
 
-	//[ClientRpc]
-	public void RpcStopAnimation(){
+    public void StudentComplete()
+    {
+        RpcStudentComplete();
+    }
+
+    public void StudentDestroy()
+    {
+        RpcStudentDestroy();
+    }
+
+    //[ClientRpc]
+    public void RpcStopAnimation(){
 		Debug.Log ("Stop Animation");
 		OnStopAnimation.Invoke ();
 	}
@@ -110,7 +122,14 @@ public class NetworkClassroomManager : NetworkBehaviour {
 		Debug.Log ("Add Complete");
 		OnStudentComplete.Invoke ();
 	}
-	[ClientRpc]
+
+    [ClientRpc]
+    public void RpcStudentDestroy()
+    {
+        Debug.Log("Add destroy");
+        OnStudentDestroy.Invoke();
+    }
+    [ClientRpc]
 	public void RpcShowIntroduction(){
 		Debug.Log ("Show Intro");
 		OnShowIntoduction.Invoke ();

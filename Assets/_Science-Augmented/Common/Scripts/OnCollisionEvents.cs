@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using Enumerable = System.Linq.Enumerable;
 
 [System.Serializable]
-public class CollisionEvent : UnityEvent<List<EducationModel>> {}
+public class CollisionEvent : UnityEvent<List<ModelGroup>> {}
 
 
 public class OnCollisionEvents : MonoBehaviour
@@ -14,8 +14,8 @@ public class OnCollisionEvents : MonoBehaviour
     public CollisionEvent OnCollisionEnterEvent = new CollisionEvent();
     public CollisionEvent OnCollisionExitEvent = new CollisionEvent();
 
-    private  EducationModel thisEducationModel;
-    private List<EducationModel> collisionObjects = new List<EducationModel>();
+    private ModelGroup thisEducationModel;
+    private List<ModelGroup> collisionObjects = new List<ModelGroup>();
     Vuforia.ImageTargetBehaviour tracker;
     void Awake()
     {
@@ -64,13 +64,12 @@ public class OnCollisionEvents : MonoBehaviour
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
     private void OnCollisionEnter(Collision collision)
     {
-      
-        if(thisEducationModel == null)
-        {
-            thisEducationModel = GetComponentInChildren<EducationModel>();
-        }
+   
+        
+            thisEducationModel = GetComponentInChildren<ModelGroup>(true);
+        
 
-        EducationModel collisonModel = collision.gameObject.GetComponentInChildren<EducationModel>();
+        ModelGroup collisonModel = collision.gameObject.GetComponentInChildren<ModelGroup>();
         print("Hit");
         if (collisonModel!= null)
         {
@@ -80,23 +79,23 @@ public class OnCollisionEvents : MonoBehaviour
             {
                 collisionObjects.Add(collisonModel);
             }
-            int combinedValue = thisEducationModel.Value;
+            int combinedValue = thisEducationModel.ActivatedActiveModel.Value;
             collisionObjects.Add(thisEducationModel);
             OnCollisionEnterEvent.Invoke(collisionObjects);
-            
-            EducationModel enzyme = collisionObjects.Find(e => e.Enzyme);
+
+            ModelGroup enzyme = collisionObjects.Find(e => e.IsEnzyme());
             if(enzyme == false)
             {
                 return;
             }
             
 
-            combinedValue = Enumerable.Aggregate(collisionObjects, combinedValue, (current, t) => current + t.Value);
-            thisEducationModel.CombinedValue = combinedValue;
+            combinedValue = Enumerable.Aggregate(collisionObjects, combinedValue, (current, t) => current + t.ActivatedActiveModel.Value);
+            thisEducationModel.ActivatedActiveModel.CombinedValue = combinedValue;
             
             for (int i = 0; i < collisionObjects.Count; i++)
             {
-                collisionObjects[i].CombinedValue = combinedValue;
+                collisionObjects[i].ActivatedActiveModel.CombinedValue = combinedValue;
             }
         }
        
@@ -105,19 +104,19 @@ public class OnCollisionEvents : MonoBehaviour
     // OnCollisionExit is called when this collider/rigidbody has stopped touching another rigidbody/collider
     private void OnCollisionExit(Collision collision)
     {
-        if (thisEducationModel == null)
-        {
-            thisEducationModel = GetComponentInChildren<EducationModel>();
-        }
-        EducationModel collisonModel = collision.gameObject.GetComponentInChildren<EducationModel>();
+        
+            thisEducationModel = GetComponentInChildren<ModelGroup>(true);
+        
+        ModelGroup collisonModel = collision.gameObject.GetComponentInChildren<ModelGroup>();
+        OnCollisionExitEvent.Invoke(collisionObjects);
         if (collisonModel != null)
         {
             
-            OnCollisionExitEvent.Invoke(collisionObjects);
+          
             if (collisionObjects.Contains(collisonModel))
             {
                 collisionObjects.Remove(collisonModel);
-                collisonModel.CombinedValue = thisEducationModel.CombinedValue = 0;
+                collisonModel.ActivatedActiveModel.CombinedValue = thisEducationModel.ActivatedActiveModel.CombinedValue = 0;
             }
         }
     }

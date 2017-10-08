@@ -240,6 +240,7 @@
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\EducationModel.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Events\SimpleRunTimeEvents.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Events\TeacherStudentEvents.cs" />
+    <Compile Include="Assets\_Science-Augmented\Application\Scripts\ModelGroup.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\NetworkClassroomManager.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\NetworkPlayer.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\SceneController.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherActivities\EnzymeActivity.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherActivities\TeacherActivity.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherButtons\ShowModelButton.cs" />
+    <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherButtons\ShowModelsButton.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherButtons\TeacherActivityButton.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherButtons\TeacherStateButton.cs" />
     <Compile Include="Assets\_Science-Augmented\Application\Scripts\Teacher\TeacherView.cs" />
