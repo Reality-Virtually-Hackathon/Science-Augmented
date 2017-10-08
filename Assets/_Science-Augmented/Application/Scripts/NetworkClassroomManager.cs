@@ -27,6 +27,7 @@ public class NetworkClassroomManager : NetworkBehaviour {
 	[HideInInspector]
 	public UnityEvent OnStopAnimation = new UnityEvent();
 
+    [SyncVar] int score;
 	protected bool _running = true;
 
 	void Awake()
@@ -92,15 +93,16 @@ public class NetworkClassroomManager : NetworkBehaviour {
 
     public void StudentComplete()
     {
-        RpcStudentComplete();
+        score++;
     }
 
+    
     public void StudentDestroy()
     {
-        RpcStudentDestroy();
+        score--;
     }
 
-    //[ClientRpc]
+    [ClientRpc]
     public void RpcStopAnimation(){
 		Debug.Log ("Stop Animation");
 		OnStopAnimation.Invoke ();

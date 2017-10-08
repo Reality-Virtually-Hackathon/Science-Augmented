@@ -31,10 +31,14 @@ public class StudentArController : MonoBehaviour
         {
             arView = FindObjectOfType<ArView>();
         }
+        
         if (NetworkClassroomManager.sInstance)
         {
             NetworkClassroomManager.sInstance.OnPlayerModelsChange.AddListener(ChangeModel);
+            NetworkClassroomManager.sInstance.OnStartAnimation.AddListener(ShowAnimation);
+            NetworkClassroomManager.sInstance.OnStopAnimation.AddListener(PauseAnimation);
         }
+        
         ChangeModel(new []{1,2});
      
     }
@@ -90,6 +94,37 @@ public class StudentArController : MonoBehaviour
         }
 
       
+    }
+
+    void ShowAnimation()
+    {
+        for (int i = 0; i < imageTargets.Count; i++)
+        {
+            Vuforia.ImageTargetBehaviour imageTarget = imageTargets[i];
+            Animator animator = imageTarget.GetComponentInChildren<Animator>(true);
+            if (animator && animator.enabled)
+            {
+                animator.Rebind();
+            }
+            if(animator)
+            animator.enabled = true;
+        }
+
+    }
+
+    void PauseAnimation()
+    {
+        for (int i = 0; i < imageTargets.Count; i++)
+        {
+            Vuforia.ImageTargetBehaviour imageTarget = imageTargets[i];
+            Animator animator = imageTarget.GetComponentInChildren<Animator>(true);
+            if (animator)
+            {
+                animator.enabled = false;
+            }
+    
+        }
+
     }
 
     bool fit;
