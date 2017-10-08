@@ -13,7 +13,7 @@ namespace Prototype.NetworkLobby
 
         public void Display(string info, string buttonInfo, UnityEngine.Events.UnityAction buttonClbk)
         {
-            infoText.text = info;
+           // infoText.text = info;
 
             buttonText.text = buttonInfo;
 
