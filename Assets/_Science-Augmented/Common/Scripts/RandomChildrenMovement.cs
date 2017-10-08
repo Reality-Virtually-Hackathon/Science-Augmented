@@ -57,9 +57,9 @@ public class RandomChildrenMovement : MonoBehaviour {
             return;
         for (int i = 0; i < transform.childCount; i++)
         {
-            float xpostion = _oscillateOffset+ Mathf.Sin(Time.time * Random.Range(0, 1f)) * _oscillateRange ;
-            float zpostion = _oscillateOffset +Mathf.Sin(Time.time * Random.Range(0, 17f)) * _oscillateRange ;
-            float ypostion = _oscillateOffset+ Mathf.Sin(Time.time * Random.Range(0, 1f)) * _oscillateRange;
+            float xpostion =  Mathf.Sin(Time.time * Random.Range(0, 1f)) * _oscillateRange ;
+            float zpostion = Mathf.Sin(Time.time * Random.Range(0, 17f)) * _oscillateRange ;
+            float ypostion = Mathf.Sin(Time.time * Random.Range(0, 1f)) * _oscillateRange;
         
             transform.GetChild(i).localPosition = startPostions[i] + new Vector3(xpostion, ypostion, zpostion);
         }
