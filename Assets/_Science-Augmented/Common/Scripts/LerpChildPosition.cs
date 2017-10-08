@@ -6,12 +6,16 @@ public class LerpChildPosition : MonoBehaviour
 {
 
     Vector3 startPosition;
-    Transform child;
+    public Transform child;
     public bool SetSelectedChild = false;
     public int SelectedChild = 0;
     private bool setToPosition;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+
+	   
+	    
 	    if (SetSelectedChild)
 	    {
 	        child = transform.GetChild(SelectedChild);
@@ -20,15 +24,9 @@ public class LerpChildPosition : MonoBehaviour
 	    }
 	    else
 	    {
-	        for (int i = 0; i < transform.childCount; i++)
-	        {
-	            if (transform.GetChild(i).gameObject.activeSelf)
-	            {
-                    child = transform.GetChild(i);
-                    startPosition = child.localPosition;
-	                break;
-	            }
-	        }
+            EducationModel model = GetComponentInChildren<EducationModel>();
+	        child = model.transform.GetChild(model.Key - 1);
+	        startPosition = child.localPosition;
 	    }
 	}
 

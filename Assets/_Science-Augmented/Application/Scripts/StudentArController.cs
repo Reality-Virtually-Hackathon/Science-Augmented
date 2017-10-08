@@ -8,15 +8,16 @@ public class StudentArController : MonoBehaviour
 {
 	#if !UNITY_WEBGL
     [SerializeField]
-    private List<Vuforia.ImageTargetBehaviour> imageTargetPrefabs = new List<Vuforia.ImageTargetBehaviour>();
+    private List<Vuforia.ImageTargetBehaviour> imageTargets = new List<Vuforia.ImageTargetBehaviour>();
 
+    [SerializeField] bool test;
     public EducationalModelData DataPrefab;
     private EducationalModelData data;
     [SerializeField]
     ArView arView;
     
    
-    private List<GameObject> objectAnchors = new List<GameObject>();
+
    
 
 
@@ -24,7 +25,10 @@ public class StudentArController : MonoBehaviour
     void Start ()
     {
         data = Instantiate(DataPrefab);
-        CreateModels();
+
+        if (test)
+            StartCoroutine(testing());
+        
         if (arView == null)
         {
             arView = FindObjectOfType<ArView>();
@@ -33,6 +37,15 @@ public class StudentArController : MonoBehaviour
         {
             NetworkClassroomManager.sInstance.OnPlayerModelsChange.AddListener(ChangeModel);
         }
+     
+    }
+
+    IEnumerator testing()
+    {
+       yield return new WaitForSeconds(1);
+      
+            CreateModels();
+        yield return null;
     }
 
     void ChangeModel(int[] modelKeys)
@@ -40,7 +53,7 @@ public class StudentArController : MonoBehaviour
         List<EducationModel> tempList = Enumerable.ToList(Enumerable.Where
                                                               (Enumerable.Select(modelKeys,
                                                               t => data.GetEducationModelById(t)),
-                                                              model => model != null));
+                                                              model => model != null)); 
         CreateModels(tempList);
     }
 
@@ -54,11 +67,7 @@ public class StudentArController : MonoBehaviour
 
     public void CreateModels()
     {
-        for (int i = 0; i < objectAnchors.Count; i++)
-        {
-            Destroy(objectAnchors[i].transform.parent.gameObject);
-        }
-        objectAnchors = new List<GameObject>();
+        
         
       CreateModels(data.EducationModels);
     }
@@ -66,26 +75,30 @@ public class StudentArController : MonoBehaviour
 
     public void CreateModels(List<EducationModel> models )
     {
-        for (int i = 0; i < objectAnchors.Count; i++)
-        {
-            Destroy(objectAnchors[i].transform.parent.gameObject);
-        }
-        objectAnchors = new List<GameObject>();
-        
+
+      
+      
+
         for (int i = 0; i < models.Count; i++)
         {
-            int imageTargetNumber = i % ( imageTargetPrefabs.Count);
-            Vuforia.ImageTargetBehaviour imageTarget = Instantiate(imageTargetPrefabs[imageTargetNumber]);
+            int imageTargetNumber = i % ( imageTargets.Count);
+            Vuforia.ImageTargetBehaviour imageTarget = imageTargets[imageTargetNumber];
 
             OnCollisionEvents collisionEventTrigger = imageTarget.gameObject.GetComponentInChildren<OnCollisionEvents>();
+            EducationModel model = imageTarget.GetComponentInChildren<EducationModel>();
+            ShowChild childEnable = model.GetComponent<ShowChild>();
+            model.Enzyme = models[i].Enzyme;
+            model.Value = models[i].Value;
+            model.CombinedValue = models[i].CombinedValue;
+            if (childEnable)
+            {
+                childEnable.ChildToShow = models[i].Key - 1;
+                childEnable.ShowChildIndex(models[i].Key - 1);
+            }
 
-            objectAnchors.Add(imageTarget.transform.GetChild(0).gameObject);
-            EducationModel arEducationModel = Instantiate(models[i], objectAnchors[i].transform);
-            arEducationModel.transform.localPosition = Vector3.zero;
-            arEducationModel.transform.localScale = Vector3.one / 10;
-           
             if (collisionEventTrigger != null)
             {
+                print("Collition Events Created");
                 collisionEventTrigger.OnCollisionEnterEvent.AddListener(CompareEducationModelEnter);
                 collisionEventTrigger.OnCollisionExitEvent.AddListener(CompareEducationModelExit);
             }
@@ -95,39 +108,53 @@ public class StudentArController : MonoBehaviour
 
     bool fit;
  
-    public void SetDemoToModel(EducationModel one, EducationModel two)
+    public void StartAnimateModel(List<EducationModel> models)
     {
+     
+
+   
         fit = true;
-        LerpChildPosition childEffectsOne = one.gameObject.GetComponentInChildren<LerpChildPosition>();
-        LerpChildPosition childEffectsTwo = two.gameObject.GetComponentInChildren<LerpChildPosition>();
-        childEffectsOne.StartLerpTo(Vector3.forward * -4, 50);
-        childEffectsTwo.StartLerpTo(Vector3.forward * -4, 50);
-        StartCoroutine(StartSetInPlace(one, two, 50));
+        for (int i = 0; i < models.Count; i++)
+        {
+           
+            LerpChildPosition childEffects = models[i].gameObject.GetComponentInChildren<LerpChildPosition>();
+            childEffects.StartLerpTo(Vector3.forward * -4, 50);
+        }
+      
+        StartCoroutine(StartSetInPlace(models, 50));
     }
 
-    private IEnumerator StartSetInPlace(EducationModel one, EducationModel two, float time = 50)
+    private IEnumerator StartSetInPlace(List<EducationModel> models, float time = 50)
     {
       
 
         float elapsedTime = 0;
-
+        Vector3 pos = Vector3.zero;
+        for (int i = 0; i < models.Count; i++)
+        {
+            pos += models[i].transform.position;
+        }
+        pos = pos / models.Count;
 
         while (elapsedTime < time)
         {
-            one.transform.position = Vector3.Lerp(one.transform.position, (one.transform.position+ two.transform.position)/2, ( elapsedTime / time ));
-            two.transform.position = Vector3.Lerp(two.transform.position, ( one.transform.position + two.transform.position ) / 2, ( elapsedTime / time ));
+            for (int i = 0; i < models.Count; i++)
+            {
+                models[i].transform.position = Vector3.Lerp(models[i].transform.position, pos, ( elapsedTime / time ));
+            }
             elapsedTime += Time.deltaTime;
             yield return null;
         }
     }
 
-    public void CompareEducationModelEnter(EducationModel one, EducationModel two)
+    public void CompareEducationModelEnter(List<EducationModel> models)
     {
+        models.RemoveAll(mod => mod.Value != models[0].Value);
         if (fit)
             return;
 
             
-            SetDemoToModel(one,two);
+            StartAnimateModel(models);
         fit = true;
 
 
@@ -138,22 +165,27 @@ public class StudentArController : MonoBehaviour
   
 
    
-    public void CompareEducationModelExit(EducationModel one, EducationModel two)
+    public void CompareEducationModelExit(List<EducationModel> models)
     {
+        models.RemoveAll(mod => mod.Value != models[0].Value);
         if (fit == false)
             return;
         StopAllCoroutines();
-        one.transform.localPosition = Vector3.zero;
-        two.transform.localPosition = Vector3.zero;
-        LerpChildPosition childEffectsOne = one.gameObject.GetComponentInChildren<LerpChildPosition>();
-        LerpChildPosition childEffectsTwo = two.gameObject.GetComponentInChildren<LerpChildPosition>();
-        childEffectsOne.LerpBackToStart( 1);
-        childEffectsTwo.LerpBackToStart(1);
+
+        for (int i = 0; i < models.Count; i++)
+        {
+            models[i].transform.localPosition = Vector3.zero;
+            LerpChildPosition childEffects = models[i].gameObject.GetComponentInChildren<LerpChildPosition>();
+            childEffects.LerpBackToStart(1);
+        }
+        
         fit = false;
 
 
 
     }
+    
+    
 
 
 	#endif

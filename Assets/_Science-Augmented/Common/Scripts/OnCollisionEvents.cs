@@ -5,16 +5,15 @@ using UnityEngine.Events;
 using Enumerable = System.Linq.Enumerable;
 
 [System.Serializable]
-public class CollisionEvent : UnityEvent<EducationModel, EducationModel> {}
-[System.Serializable]
-public class MultiCollisionEvent : UnityEvent<EducationModel, EducationModel, EducationModel> { }
+public class CollisionEvent : UnityEvent<List<EducationModel>> {}
+
 
 public class OnCollisionEvents : MonoBehaviour
 {
 
     public CollisionEvent OnCollisionEnterEvent = new CollisionEvent();
     public CollisionEvent OnCollisionExitEvent = new CollisionEvent();
-    public CollisionEvent OnCollisionStayEvent = new CollisionEvent();
+
     private  EducationModel thisEducationModel;
     private List<EducationModel> collisionObjects = new List<EducationModel>();
     Vuforia.ImageTargetBehaviour tracker;
@@ -22,6 +21,7 @@ public class OnCollisionEvents : MonoBehaviour
     {
 
          tracker = gameObject.transform.parent.GetComponent<Vuforia.ImageTargetBehaviour>();
+        this.enabled = false;
         TurnOff();
     }
 
@@ -75,13 +75,15 @@ public class OnCollisionEvents : MonoBehaviour
         if (collisonModel!= null)
         {
             print("Invoke");
-            OnCollisionEnterEvent.Invoke(thisEducationModel,collisonModel);
+           
             if(!collisionObjects.Contains(collisonModel))
             {
                 collisionObjects.Add(collisonModel);
             }
-            string combinedValue = thisEducationModel.Value;
-       
+            int combinedValue = thisEducationModel.Value;
+            collisionObjects.Add(thisEducationModel);
+            OnCollisionEnterEvent.Invoke(collisionObjects);
+            
             EducationModel enzyme = collisionObjects.Find(e => e.Enzyme);
             if(enzyme == false)
             {
@@ -111,28 +113,16 @@ public class OnCollisionEvents : MonoBehaviour
         if (collisonModel != null)
         {
             
-            OnCollisionExitEvent.Invoke(thisEducationModel,collisonModel);
+            OnCollisionExitEvent.Invoke(collisionObjects);
             if (collisionObjects.Contains(collisonModel))
             {
                 collisionObjects.Remove(collisonModel);
-                collisonModel.CombinedValue = thisEducationModel.CombinedValue = "";
+                collisonModel.CombinedValue = thisEducationModel.CombinedValue = 0;
             }
         }
     }
 
-    // OnCollisionStay is called once per frame for every collider/rigidbody that is touching rigidbody/collider
-    private void OnCollisionStay(Collision collision)
-    {
-        if (thisEducationModel == null)
-        {
-            thisEducationModel = GetComponentInChildren<EducationModel>();
-        }
-        EducationModel collisonModel = collision.gameObject.GetComponentInChildren<EducationModel>();
-        if (collisonModel != null)
-        {
-            OnCollisionStayEvent.Invoke(thisEducationModel,collisonModel);
-        }
-    }
+ 
 
 
 }

@@ -6,8 +6,8 @@ public class EducationModel : MonoBehaviour
 {
 
     public int Key;
-    public string CombinedValue;
-    public string Value;
+    public int CombinedValue;
+    public int Value;
     public bool Enzyme = false;
     public GameObject Model;
     public void SetKey(int value)
@@ -15,13 +15,13 @@ public class EducationModel : MonoBehaviour
         Model = gameObject;
         Key = value;
     }
-    public void SetValue(string value)
+    public void SetValue(int value)
     {
         Model = gameObject;
         Value = value;
     }
 
-    public void SetCombinedValue(string value)
+    public void SetCombinedValue(int value)
     {
         CombinedValue = value;
     }

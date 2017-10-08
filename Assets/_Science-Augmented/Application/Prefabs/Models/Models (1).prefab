@@ -27940,7 +27940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChildToShow: 1
-  ShowOnAwake: 0
+  ShowOnAwake: 1
 --- !u!114 &114177715377120862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27994,7 +27994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Key: 2
-  CombinedValue: 
+  CombinedValue: 0
   Value: 1
   Enzyme: 0
   Model: {fileID: 1582067347526074}
@@ -28039,6 +28039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcb250254994514394c3dc281ff6b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  child: {fileID: 0}
   SetSelectedChild: 0
   SelectedChild: 0
 --- !u!114 &114739239239250508
