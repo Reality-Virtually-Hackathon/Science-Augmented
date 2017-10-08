@@ -18,6 +18,10 @@ public class ARToggle : MonoBehaviour {
 		VuforiaBehaviour.Instance.enabled = enabled;
 		#endif
 
+		if (!enabled) {
+			Camera.main.clearFlags = CameraClearFlags.Skybox;
+		}
+
 	}
 
 }
